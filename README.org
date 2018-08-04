@@ -1,0 +1,18 @@
+#+TITLE: My Configuration Files
+
+This repository holds my config files.
+
+* Usage
+
+I find it convenient to use GNU stow to make symlinks to files in this repo.
+For example:
+
+#+BEGIN_SRC sh
+  git clone <this> ~/.dotfiles
+  cd ~/.dotfiles
+  stow bash
+#+END_SRC
+
+Now everything inside bash is symlinked from the directory above ~/.dotfiles.
+
+Inspired by [[https://alexpearce.me/2016/02/managing-dotfiles-with-stow/][this post]].
