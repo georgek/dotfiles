@@ -1,0 +1,45 @@
+! Emacs (for emacsclient; needs to be same as in .emacs)
+emacs.font: DejaVu Sans Mono-9
+
+! XTerm
+xterm*faceName: DejaVu Sans Mono
+xterm*faceSize: 9
+
+xterm*internalBorder:        0
+xterm*scrollBar:         false
+xterm*cursorBlink:       false
+!xterm*geometry:         80x26
+xterm*saveLines:         65535
+xterm*dynamicColors:        on
+xterm*highlightSelection: true
+! Appearance
+xterm*utf8:            2
+xterm*eightBitInput:   true
+xterm*metaSendsEscape: true
+xterm*cursorColor: #DCDCCC
+! Zenburn
+xterm*background:  #3f3f3f
+xterm*foreground:  #dcdccc
+xterm*color0:      #1E2320
+xterm*color1:      #705050
+xterm*color2:      #60b48a
+xterm*color3:      #dfaf8f
+xterm*color4:      #506070
+xterm*color5:      #dc8cc3
+xterm*color6:      #8cd0d3
+xterm*color7:      #dcdccc
+xterm*color8:      #709080
+xterm*color9:      #dca3a3
+xterm*color10:     #c3bf9f
+xterm*color11:     #f0dfaf
+xterm*color12:     #94bff3
+xterm*color13:     #ec93d3
+xterm*color14:     #93e0e3
+xterm*color15:     #ffffff
+
+XLock.qix.delay:	20000
+XLock.qix.batchcount:	32
+XLock.qix.saturation:	1
+XLock.mode:	qix
+XLock.background:	black
+XLock.foreground:	red
