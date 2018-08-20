@@ -292,6 +292,9 @@ settings = {
     autolog = "yes";
     autolog_path = "~/.irssi/logs/$tag/$0.log";
   };
+  "perl/core/scripts" = {
+    hilightwin_showprivmsg = "no";
+  };
 };
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
