@@ -1,6 +1,7 @@
 #+TITLE: My Configuration Files
 
-This repository holds my config files.
+This repository holds my config files (apart from my .emacs which lives
+[[https://github.com/georgek/dot-emacs][here]]).
 
 * Usage
 
