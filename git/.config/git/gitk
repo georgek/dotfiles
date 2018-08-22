@@ -54,9 +54,9 @@ set circleoutlinecolor black
 set geometry(main) 1600x1147+0+0
 set geometry(state) normal
 set geometry(topwidth) 1600
-set geometry(topheight) 464
-set geometry(pwsash0) "558 1"
-set geometry(pwsash1) "837 1"
+set geometry(topheight) 815
+set geometry(pwsash0) "853 1"
+set geometry(pwsash1) "1219 1"
 set geometry(botwidth) 697
-set geometry(botheight) 678
+set geometry(botheight) 327
 set permviews {}
