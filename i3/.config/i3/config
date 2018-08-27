@@ -155,8 +155,8 @@ set $border-color        #ffffff
 # window colors
 #                       border              background         text                 indicator
 client.focused          $bg-color           $bg-color          $text-color          $border-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  $border-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  $border-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $border-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $border-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $border-color
 
 # bar
@@ -166,8 +166,8 @@ bar {
 		background $bg-color
 	    	separator #757575
 		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		focused_workspace  $inactive-bg-color $inactive-bg-color $text-color
+		inactive_workspace $bg-color          $bg-color          $inactive-text-color
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 }
