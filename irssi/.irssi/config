@@ -305,6 +305,6 @@ windows = {
   2 = { name = "hilight"; sticky = "yes"; };
 };
 mainwindows = {
-  1 = { first_line = "8"; lines = "16"; };
-  2 = { first_line = "1"; lines = "7"; };
+  1 = { first_line = "10"; lines = "100"; };
+  2 = { first_line = "1"; lines = "10"; };
 };
