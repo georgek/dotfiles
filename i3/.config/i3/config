@@ -145,11 +145,11 @@ bindsym $mod+r mode "resize"
 
 hide_edge_borders both
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $bg-color 	         #2B2B2B
+set $inactive-bg-color   #000000
+set $text-color          #DCDCCC
+set $inactive-text-color #656555
+set $urgent-bg-color     #CC9393
 set $border-color        #ffffff
 
 # window colors
