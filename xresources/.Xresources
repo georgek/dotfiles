@@ -8,6 +8,7 @@ xterm*faceSize: 9
 xterm*internalBorder:        0
 xterm*scrollBar:         false
 xterm*cursorBlink:       false
+xterm*bellIsUrgent:	 true
 !xterm*geometry:         80x26
 xterm*saveLines:         65535
 xterm*dynamicColors:        on
