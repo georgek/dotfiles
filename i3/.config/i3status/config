@@ -18,7 +18,7 @@ order += "cpu_temperature 0"
 order += "tztime local"
 
 wireless wlan0 {
-        format_up = "W: (%quality at %essid, %bitrate) %ip"
+        format_up = "W: %ip (%quality at %essid, %bitrate)"
         format_down = "W"
 }
 
