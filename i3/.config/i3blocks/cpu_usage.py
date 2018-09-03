@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
+import os
 import time
 from collections import deque
 import pickle
 
-PICKLEFILE = ".cpu_usage.pkl"
+PICKLEFILE = os.path.expanduser("~/.config/i3blocks/.cpu_usage.pkl")
 BLOCKS = [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 COLOURS = [
     "#7F9F7F",           # green
@@ -30,8 +31,8 @@ def render_history(history):
     """Returns rendered graph."""
     blks = len(BLOCKS)-1
     cols = len(COLOURS)-1
-    blockns = [int(perc/100*blks) for perc in history]
-    colourns = [int(perc/100*cols) for perc in history]
+    blockns = [int(frac*blks) for frac in history]
+    colourns = [round(frac*cols) for frac in history]
     return "".join(f'<span foreground="{COLOURS[n]}">{BLOCKS[m]}</span>'
                    for m, n in zip(blockns, colourns))
 
@@ -46,11 +47,11 @@ def main():
     active1, total1 = getstat()
     time.sleep(1.5)
     active2, total2 = getstat()
-    perc = (active2-active1)/(total2-total1)*100
-    history.append(perc)
+    frac = (active2-active1)/(total2-total1)
+    history.append(frac)
     graph = render_history(history)
-    colour = COLOURS[int(perc/100*(len(COLOURS)-1))]
-    print(f'{graph}<span foreground="{colour}">{perc:3.0f}%</span>')
+    colour = COLOURS[round(frac*(len(COLOURS)-1))]
+    print(f'{graph}<span foreground="{colour}">{frac*100:3.0f}%</span>\n')
 
     with open(PICKLEFILE, "wb") as f:
         pickle.dump(history, f)
