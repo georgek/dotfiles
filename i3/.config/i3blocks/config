@@ -4,8 +4,13 @@ command=/usr/libexec/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[volume]
+[pulse_control]
 label=♪
+command=$HOME/.config/i3blocks/pulse_control.py
+interval=once
+separator=false
+
+[volume]
 instance=Master
 interval=once
 signal=10
