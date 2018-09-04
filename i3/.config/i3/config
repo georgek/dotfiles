@@ -178,5 +178,6 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill --
 bindsym XF86Calculator exec speedcrunch
 
 exec compton -f -D 3 --vsync opengl
+exec redshift
 
 for_window [class="SpeedCrunch"] floating enable resize set 400 300
