@@ -9,11 +9,7 @@ label=♪
 command=$HOME/.config/i3blocks/pulse_control.py
 interval=once
 separator=false
-
-[volume]
-instance=Master
-interval=once
-signal=10
+signal=2
 
 [memory]
 label=Mem
