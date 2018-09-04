@@ -8,7 +8,6 @@ markup=none
 label=♪
 command=$HOME/.config/i3blocks/pulse_control.py
 interval=once
-separator=false
 signal=2
 
 [memory]
