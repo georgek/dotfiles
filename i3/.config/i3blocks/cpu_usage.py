@@ -18,7 +18,6 @@ GRAPHSIZE = 10
 
 def getstat():
     """Returns tuple containing active time and total time."""
-    tuples = []
     with open("/proc/stat") as stat:
         line = next(stat)
         times = [int(n) for n in line.split()[1:]]
