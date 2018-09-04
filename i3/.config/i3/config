@@ -172,6 +172,11 @@ bar {
 	}
 }
 
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5000 && pkill --signal RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5000 && pkill --signal RTMIN+2 i3blocks
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill --signal RTMIN+2 i3blocks
+bindsym XF86Calculator exec speedcrunch
+
 exec compton -f -D 3 --vsync opengl
 
 for_window [class="SpeedCrunch"] floating enable resize set 400 300
