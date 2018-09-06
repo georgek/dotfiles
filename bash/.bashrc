@@ -87,7 +87,7 @@ export ALTERNATE_EDITOR="" \
        SUDO_EDITOR="emacsclient -t" \
        VISUAL="emacsclient -c"
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 export PATH=/usr/lib/go-1.10/bin/:$PATH
 export GOPATH=$HOME/gopath
