@@ -1,8 +1,8 @@
 ! Emacs (for emacsclient; needs to be same as in .emacs)
-emacs.font: DejaVu Sans Mono-9
+emacs.font: Ubuntu Mono-9
 
 ! XTerm
-xterm*faceName: DejaVu Sans Mono
+xterm*faceName: Ubuntu Mono
 xterm*faceSize: 9
 
 xterm*internalBorder:        0
