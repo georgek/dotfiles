@@ -13,7 +13,7 @@ configuration {
 /*	show-icons: false;*/
 	terminal: "xterm";
 /*	ssh-client: "ssh";*/
-	ssh-command: "{terminal} -e 'TERM=xterm-256color; {ssh-client} {host}'";
+	ssh-command: "{terminal} -T xterm -e 'TERM=xterm-256color; {ssh-client} {host}'";
 /*	run-command: "{cmd}";*/
 /*	run-list-command: "";*/
 /*	run-shell-command: "{terminal} -e {cmd}";*/
