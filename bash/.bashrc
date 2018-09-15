@@ -20,23 +20,8 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 # [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-# case "$TERM" in
-# xterm-color)
-#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#     ;;
-# *)
-#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#     ;;
-# esac
-
 # Comment in the above and uncomment this below for a color prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 # If this is an xterm set the title to user@host:dir
 # case "$TERM" in
@@ -60,9 +45,6 @@ fi
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
-
     alias grep='grep --color=auto'
 fi
 
@@ -77,10 +59,6 @@ alias l='ls -CF'
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
-
-# set emacsclient as default editor, or emacs if emacs isn't already
-# running, note this is set to use emacs-snapshot-gtk to work with the
-# debian package
 
 export ALTERNATE_EDITOR="" \
        EDITOR="emacsclient -t" \
