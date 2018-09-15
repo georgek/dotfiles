@@ -18,7 +18,7 @@ export HISTCONTROL=ignoreboth
 shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+# [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -99,9 +99,9 @@ export PROJECT_HOME=$HOME/code
 #source $HOME/bin/virtualenvwrapper.sh
 
 export PATH="/home/gk/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
-pyenv virtualenvwrapper_lazy
+# pyenv virtualenvwrapper_lazy
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
