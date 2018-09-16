@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# to be run as a cron job by root
+disks=("sda" "sdb" "sdc" "sdd" "sde")
+
+for disk in ${disks[@]}; do
+    if smartctl -i -n standby "/dev/${disk}" &> /dev/null; then
+	printf "%s %s\n" ${disk} UP
+    else
+	printf "%s %s\n" ${disk} ASLEEP
+    fi
+done > /tmp/disk_status
+
+pkill --signal RTMIN+3 i3blocks

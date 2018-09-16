@@ -18,13 +18,13 @@ interval=30
 [memory]
 label=Swap
 instance=swap
-separator=false
 interval=30
 
 [disk]
-label=/
-instance=/
-interval=30
+command=$HOME/.config/i3blocks/display_disk_status.py
+interval=once
+signal=3
+markup=pango
 
 [iface]
 color=#7F9F7F
