@@ -46,7 +46,7 @@ interval=10
 
 [cpu_usage]
 command=$HOME/.config/i3blocks/cpu_usage.py
-interval=2
+interval=persist
 markup=pango
 
 [load_average]
