@@ -5,13 +5,13 @@ import sys
 DISK_STATUS_FILE_NAME = "/tmp/disk_status"
 DISK_USAGE_FILE_NAME = "/tmp/disk_usage"
 
-BLOCKS = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-COLOURS = [
+BLOCKS = ("▁", "▂", "▃", "▄", "▅", "▆", "▇", "█")
+COLOURS = (
     "#7F9F7F",           # green
     "#F0DFAF",           # yellow
     "#DFAF8F",           # orange
     "#CC9393",           # red
-]
+)
 
 
 def little_status(status):
