@@ -20,12 +20,14 @@ SSDS = (
 
 
 def little_status(status):
+    if status == "SSD":
+        return '(s)'
     if status == "UP":
-        return "u"
+        return f'<span foreground="{COLOURS[2]}">(u)</span>'
     elif status == "ASLEEP":
-        return "z"
+        return f'<span foreground="{COLOURS[0]}">(z)</span>'
     else:
-        return "?"
+        return f'<span foreground="{COLOURS[3]}">(?)</span>'
 
 
 def make_block(amount):
@@ -39,9 +41,9 @@ def make_block(amount):
 def main():
     try:
         with open(DISK_STATUS_FILE_NAME) as disk_status_file:
-            disk_status_dict = dict(line.split() for line in disk_status_file)
+            disk_statuses = [line.split() for line in disk_status_file]
     except FileNotFoundError:
-        disk_status_dict = {}
+        disk_statuses = ()
 
     try:
         with open(DISK_USAGE_FILE_NAME) as disk_usage_file:
@@ -51,14 +53,13 @@ def main():
         disk_usage_dict = {}
 
     info = []
-    for disk, status in disk_status_dict.items():
+    for disk, status, _ in disk_statuses:
         usage = disk_usage_dict.get(disk, "100%")
         usage = int(usage[:-1])/100
         block = make_block(usage)
         if disk in SSDS:
-            info.append(f"{block} {disk}(s)")
-        else:
-            info.append(f"{block} {disk}({little_status(status)})")
+            status = "SSD"
+        info.append(f"{block} {disk}{little_status(status)}")
 
     out = " ".join(info)
     sys.stdout.write(out)
