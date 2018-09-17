@@ -13,6 +13,11 @@ COLOURS = (
     "#CC9393",           # red
 )
 
+SSDS = (
+    "sda",
+    "sdd",
+)
+
 
 def little_status(status):
     if status == "UP":
@@ -50,7 +55,10 @@ def main():
         usage = disk_usage_dict.get(disk, "100%")
         usage = int(usage[:-1])/100
         block = make_block(usage)
-        info.append(f"{block} {disk}({little_status(status)})")
+        if disk in SSDS:
+            info.append(f"{block} {disk}(s)")
+        else:
+            info.append(f"{block} {disk}({little_status(status)})")
 
     out = " ".join(info)
     sys.stdout.write(out)
