@@ -41,7 +41,7 @@ interval=10
 separator=false
 
 [temperature]
-command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 50 -c 60
+command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 45 -c 60
 interval=10
 
 [time]
