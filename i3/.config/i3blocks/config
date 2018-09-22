@@ -11,25 +11,29 @@ command=$HOME/.config/i3blocks/pulse_control.py
 interval=once
 signal=2
 
-[memory]
-command=$HOME/.config/i3blocks/memory.py
-interval=30
-markup=pango
-
 [disk]
 command=$HOME/.config/i3blocks/display_disk_status.py
 interval=once
 signal=3
 markup=pango
 
-[iface]
-color=#7F9F7F
-interval=10
-separator=false
-
 [bandwidth]
 command=$HOME/.config/i3blocks/bandwidth
 interval=5
+markup=pango
+
+[cpu_usage]
+command=$HOME/.config/i3blocks/cpu_usage.py
+interval=persist
+markup=pango
+
+[load_average]
+interval=10
+
+[memory]
+command=$HOME/.config/i3blocks/memory.py
+interval=30
+markup=pango
 
 [temperature]
 command=$HOME/.config/i3blocks/temperature --chip acpitz-virtual-0 -w 30 -c 40
@@ -38,14 +42,6 @@ separator=false
 
 [temperature]
 command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 50 -c 60
-interval=10
-
-[cpu_usage]
-command=$HOME/.config/i3blocks/cpu_usage.py
-interval=persist
-markup=pango
-
-[load_average]
 interval=10
 
 [time]

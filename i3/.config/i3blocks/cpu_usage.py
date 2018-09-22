@@ -11,7 +11,7 @@ COLOURS = [
     "#DFAF8F",           # orange
     "#CC9393",           # red
 ]
-GRAPHSIZE = 10
+GRAPHSIZE = 15
 
 
 def getstat():
