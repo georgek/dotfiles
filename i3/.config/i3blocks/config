@@ -12,14 +12,9 @@ interval=once
 signal=2
 
 [memory]
-label=Mem
-separator=false
+command=$HOME/.config/i3blocks/memory.py
 interval=30
-
-[memory]
-label=Swap
-instance=swap
-interval=30
+markup=pango
 
 [disk]
 command=$HOME/.config/i3blocks/display_disk_status.py
