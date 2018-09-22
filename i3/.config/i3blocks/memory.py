@@ -72,7 +72,7 @@ def make_mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
     ])
 
     active_gib = usage.active/1024/1024
-    active_str = f"{active_gib:2.1f}"
+    active_str = f"{active_gib:2.1f}G"
     active_proportion = usage.active/usage.memtotal
 
     if active_proportion >= 0.9:
@@ -81,21 +81,25 @@ def make_mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
         active_str = with_colour(active_str, ORANGE)
     elif active_proportion >= 0.5:
         active_str = with_colour(active_str, YELLOW)
+    else:
+        active_str = with_colour(active_str, GREEN)
 
-    return f"[{bars}{active_str}G]"
+    return f"[{bars}{active_str}]"
 
 
 def make_swap_graph(usage: Usage) -> str:
     """Make swap graph"""
     swap_usage = usage.swaptotal - usage.swapfree
     swap_gib = swap_usage/1024/1024
-    swap_str = f"{swap_gib:1.1f}"
+    swap_str = f"{swap_gib:1.1f}G"
     swap_proportion = swap_usage/usage.swaptotal
 
     if swap_proportion > 0:
         swap_str = with_colour(swap_str, RED)
+    else:
+        swap_str = with_colour(swap_str, GREEN)
 
-    return f"[{swap_str}G]"
+    return f"[{swap_str}]"
 
 
 def main():
