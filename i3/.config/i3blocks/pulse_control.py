@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""
+Display and control pulseaudio settings using i3blocks
+"""
 
 import sys
 import os
@@ -20,24 +23,24 @@ def get_sinks():
     pacmd_output = run(["pacmd", "list-sinks"], stdout=PIPE)
     i = 0
     for line in pacmd_output.stdout.decode("utf8").splitlines():
-        m = re.match("^  ( |\*) index: (\d+)$", line)
-        if m:
-            sink_ids.append(m.group(2))
-            if m.group(1) == "*":
+        match = re.match(r"^  ( |\*) index: (\d+)$", line)
+        if match:
+            sink_ids.append(match.group(2))
+            if match.group(1) == "*":
                 default_sink_index = i
             i += 1
             continue
-        m = re.match('\s+alsa.card_name = "([^"]+)"', line)
-        if m:
-            sink_names.append(m.group(1))
+        match = re.match(r'\s+alsa.card_name = "([^"]+)"', line)
+        if match:
+            sink_names.append(match.group(1))
             continue
-        m = re.match('\s+volume:\s+[\w-]+:\s+\d+\s+/\s+(\d+)%', line)
-        if m:
-            sink_volumes.append(m.group(1))
+        match = re.match(r'\s+volume:\s+[\w-]+:\s+\d+\s+/\s+(\d+)%', line)
+        if match:
+            sink_volumes.append(match.group(1))
             continue
-        m = re.match('\s+muted:\s+(\w+)', line)
-        if m:
-            sink_muted.append(True if m.group(1) == "yes" else False)
+        match = re.match(r'\s+muted:\s+(\w+)', line)
+        if match:
+            sink_muted.append(True if match.group(1) == "yes" else False)
             continue
 
     sinks = [Sink(*props) for props in
@@ -45,38 +48,43 @@ def get_sinks():
     return sinks, default_sink_index
 
 
-def change_sink(sinks, n):
-    """Set sink n to default and move all inputs to sink n."""
-    sys.stderr.write(f"Changing to sink {sinks[n]}...\n")
+def change_sink(sinks, sink_index):
+    """Set sink sink_index to default and move all inputs to sink sink_index.
 
-    run(["pacmd", "set-default-sink", sinks[n].id])
+    """
+    sys.stderr.write(f"Changing to sink {sinks[sink_index]}...\n")
+
+    run(["pacmd", "set-default-sink", sinks[sink_index].id])
 
     pacmd_output = run(["pacmd", "list-sink-inputs"], stdout=PIPE)
     for line in pacmd_output.stdout.decode("utf8").splitlines():
-        m = re.match("^    index: (\d+)$", line)
-        if m:
-            input_id = m.group(1)
+        match = re.match(r"^    index: (\d+)$", line)
+        if match:
+            input_id = match.group(1)
             sys.stderr.write(f"Moving input {input_id}...\n")
-            run(["pacmd", "move-sink-input", input_id, sinks[n].id])
+            run(["pacmd", "move-sink-input", input_id, sinks[sink_index].id])
 
 
 def mute_default_sink():
+    """Mute the default sink"""
     sys.stderr.write("Muting default sink...\n")
     run(["pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle"])
 
 
 def set_default_sink_volume(amount):
+    """Set default sink volume to amount"""
     sys.stderr.write(f"Setting default sink volume {amount}...")
     run(["pactl", "set-sink-volume", "@DEFAULT_SINK@", amount])
 
 
 def main():
+    """Entry point to program"""
     sinks, default_sink_index = get_sinks()
 
     button = os.environ.get("BLOCK_BUTTON")
     if button == "1":
         # left click: set sink
-        next_default_index = (default_sink_index + 1)%len(sinks)
+        next_default_index = (default_sink_index + 1) % len(sinks)
         change_sink(sinks, next_default_index)
     elif button == "2":
         # middle click: set to 100%
