@@ -2,6 +2,8 @@
 # Copyright (C) 2012 Stefan Breunig <stefan+measure-net-speed@mathphys.fsk.uni-heidelberg.de>
 # Copyright (C) 2014 kaueraal
 # Copyright (C) 2015 Thiago Perrotta <perrotta dot thiago at poli dot ufrj dot br>
+# Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
+# Copyright (C) 2014 Alexander Keller <github@nycroth.com>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,28 +18,59 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+RED="#CC9393"
+GREEN="#7F9F7F"
+
+# iface stuff
+
+#------------------------------------------------------------------------
+
 # Use the provided interface, otherwise the device used for the default route.
 if [[ -n $BLOCK_INSTANCE ]]; then
-  INTERFACE=$BLOCK_INSTANCE
+  IF=$BLOCK_INSTANCE
 else
-  INTERFACE=$(ip route | awk '/^default/ { print $5 ; exit }')
+  IF=$(ip route | awk '/^default/ { print $5 ; exit }')
 fi
 
-# Issue #36 compliant.
-if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
-then
-    echo "$INTERFACE down"
-    echo "$INTERFACE down"
-    echo "#FF0000"
-    exit 0
+#------------------------------------------------------------------------
+
+# As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
+# connection (think desktop), the corresponding block should not be displayed.
+[[ ! -d /sys/class/net/${IF} ]] && exit
+
+#------------------------------------------------------------------------
+
+if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
+    echo "<span foreground=\"${RED}\">down</span>"
+  exit
 fi
+
+case $1 in
+  -4)
+    AF=inet ;;
+  -6)
+    AF=inet6 ;;
+  *)
+    AF=inet6? ;;
+esac
+
+# if no interface is found, use the first device with a global scope
+IPADDR=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$1 and exit")
+
+case $BLOCK_BUTTON in
+  3) echo -n "$IPADDR" | xclip -q -se c ;;
+esac
+
+#------------------------------------------------------------------------
+
+# bandwidth stuff
 
 # path to store the old results in
-path="/dev/shm/$(basename $0)-${INTERFACE}"
+path="/dev/shm/$(basename $0)-${IF}"
 
 # grabbing data for each adapter.
-read rx < "/sys/class/net/${INTERFACE}/statistics/rx_bytes"
-read tx < "/sys/class/net/${INTERFACE}/statistics/tx_bytes"
+read rx < "/sys/class/net/${IF}/statistics/rx_bytes"
+read tx < "/sys/class/net/${IF}/statistics/tx_bytes"
 
 # get time
 time=$(date +%s)
@@ -69,20 +102,22 @@ tx_rate=$(( $tx_diff / $time_diff ))
 # shift by 10 bytes to get KiB/s. If the value is larger than
 # 1024^2 = 1048576, then display MiB/s instead
 
+echo -n "<span foreground=\"${GREEN}\">$IPADDR</span> "
+
 # incoming
 rx_kib=$(( $rx_rate >> 10 ))
-if [[ "$rx_rate" -gt 1048576 ]]; then
+if [[ "$rx_rate" -gt 838860 ]]; then
   printf '%sM' "`echo "scale=1; $rx_kib / 1024" | bc`"
 else
-  printf '%4dk' "${rx_kib}"
+  printf '%3dk' "${rx_kib}"
 fi
 
 echo -n "/"
 
 # outgoing
 tx_kib=$(( $tx_rate >> 10 ))
-if [[ "$tx_rate" -gt 1048576 ]]; then
+if [[ "$tx_rate" -gt 838860 ]]; then
   printf '%sM' "`echo "scale=1; $tx_kib / 1024" | bc`"
 else
-  printf '%4dk' "${tx_kib}"
+  printf '%3dk' "${tx_kib}"
 fi
