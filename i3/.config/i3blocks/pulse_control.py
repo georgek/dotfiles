@@ -102,7 +102,7 @@ def main():
     if button is not None:
         sinks, default_sink_index = get_sinks()
 
-    short_name = sinks[default_sink_index].name[0]
+    short_name = sinks[default_sink_index].name.split()[0]
     name = sinks[default_sink_index].name
     if sinks[default_sink_index].muted:
         volume = "----"
