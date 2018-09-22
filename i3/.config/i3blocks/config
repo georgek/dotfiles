@@ -3,6 +3,7 @@
 command=/usr/libexec/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
+color=#DCDCCC
 
 [pulse_control]
 label=♪
