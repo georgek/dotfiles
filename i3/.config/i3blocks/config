@@ -45,5 +45,5 @@ command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 45 -c 60
 interval=10
 
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+command=date '+%Y-%m-%d %H:%M:%S %Z'
 interval=1
