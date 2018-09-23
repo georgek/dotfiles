@@ -37,7 +37,7 @@ def render_history(history):
 def main():
     history = deque([0]*GRAPHSIZE, maxlen=GRAPHSIZE)
     graph = render_history(history)
-    out = f'{graph}---%\n'
+    out = f'CPU[{graph}---%]\n'
     sys.stdout.write(out)
     sys.stdout.flush()
 
@@ -49,8 +49,14 @@ def main():
         history.append(frac)
         graph = render_history(history)
         colour = COLOURS[round(frac*(len(COLOURS)-1))]
-        out = f'{graph}<span foreground="{colour}">{frac*100:3.0f}%</span>\n'
-        sys.stdout.write(out)
+        amount = f'<span foreground="{colour}">{frac*100:3.0f}%</span>'
+        sys.stdout.write(       # short
+            f'CPU[{amount}]\n',
+        )
+        sys.stdout.flush()
+        sys.stdout.write(       # long
+            f'CPU[{graph}{amount}]\n',
+        )
         sys.stdout.flush()
 
 
