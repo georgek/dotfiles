@@ -32,7 +32,7 @@ interval=10
 
 [memory]
 command=$HOME/.config/i3blocks/memory.py
-interval=30
+interval=persist
 markup=pango
 
 [temperature]

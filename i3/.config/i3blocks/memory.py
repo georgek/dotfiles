@@ -5,10 +5,12 @@ Display htop-style memory usage
 
 from collections import namedtuple
 from math import ceil
+import sys
+from time import sleep
 
 GRAPH_WIDTH = 20
 
-Usage = namedtuple("Usage", ["memtotal", "active", "buffers", "cache",
+Usage = namedtuple("Usage", ["memtotal", "active", "buffers", "cached",
                              "swaptotal", "swapfree"])
 
 GREY = "#656555"
@@ -27,28 +29,26 @@ def with_colour(string, colour):
 def get_usage():
     """Get memory usage from /proc/meminfo"""
 
+    meminfo = {}
     with open("/proc/meminfo") as f:
         for line in f:
             split = line.split()
-            name = split[0]
-            amount = int(split[1])
-            if name == "MemTotal:":
-                memtotal = amount
-            elif name == "Active:":
-                active = amount
-            elif name == "Buffers:":
-                buffers = amount
-            elif name == "Cached:":
-                cache = amount
-            elif name == "SwapTotal:":
-                swaptotal = amount
-            elif name == "SwapFree:":
-                swapfree = amount
+            name = split[0][:-1]
+            meminfo[name] = int(split[1])
 
-    return Usage(memtotal, active, buffers, cache, swaptotal, swapfree)
+    memtotal = meminfo["MemTotal"]
+    usedtotal = memtotal - meminfo["MemFree"]
+    buffers = meminfo["Buffers"]
+    cached = meminfo["Cached"] + meminfo["SReclaimable"] - meminfo["Shmem"]
+    active = usedtotal - buffers - cached
+
+    swaptotal = meminfo["SwapTotal"]
+    swapfree = meminfo["SwapFree"]
+
+    return Usage(memtotal, active, buffers, cached, swaptotal, swapfree)
 
 
-def make_mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
+def mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
     """Make memory graph at desired width"""
 
     width_each = graph_width - 2
@@ -56,7 +56,7 @@ def make_mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
                   / usage.memtotal*width_each)
     buffers = ceil(usage.buffers
                    / usage.memtotal*width_each)
-    cached = ceil(usage.cache
+    cached = ceil(usage.cached
                   / usage.memtotal*width_each)
     total = active + buffers + cached
 
@@ -71,6 +71,10 @@ def make_mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
         " " * (graph_width - total),
     ])
 
+    return bars
+
+
+def mem_amount(usage: Usage) -> str:
     active_gib = usage.active/1024/1024
     active_str = f"{active_gib:2.1f}G"
     active_proportion = usage.active/usage.memtotal
@@ -84,10 +88,10 @@ def make_mem_graph(usage: Usage, graph_width: int = GRAPH_WIDTH) -> str:
     else:
         active_str = with_colour(active_str, GREEN)
 
-    return f"[{bars}{active_str}]"
+    return active_str
 
 
-def make_swap_graph(usage: Usage) -> str:
+def swap_amount(usage: Usage) -> str:
     """Make swap graph"""
     swap_usage = usage.swaptotal - usage.swapfree
     swap_gib = swap_usage/1024/1024
@@ -99,19 +103,29 @@ def make_swap_graph(usage: Usage) -> str:
     else:
         swap_str = with_colour(swap_str, GREEN)
 
-    return f"[{swap_str}]"
+    return swap_str
 
 
 def main():
-    usage = get_usage()
+    while True:
+        usage = get_usage()
 
-    mem_label = "Mem"
-    mem_graph = make_mem_graph(usage)
+        mem_label = "Mem"
+        mgraph = mem_graph(usage)
+        mamount = mem_amount(usage)
 
-    swap_label = "Swp"
-    swap_graph = make_swap_graph(usage)
+        swap_label = "Swp"
+        samount = swap_amount(usage)
 
-    print(f"{mem_label}{mem_graph} {swap_label}{swap_graph}")
+        sys.stdout.write(       # short
+            f"{mem_label}[{mamount}] {swap_label}[{samount}]\n",
+        )
+        sys.stdout.flush()
+        sys.stdout.write(       # long
+            f"{mem_label}[{mgraph}{mamount}] {swap_label}[{samount}]\n",
+        )
+        sys.stdout.flush()
+        sleep(30)
 
 
 if __name__ == '__main__':
