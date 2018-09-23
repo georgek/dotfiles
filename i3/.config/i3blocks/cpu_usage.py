@@ -12,6 +12,7 @@ COLOURS = [
     "#CC9393",           # red
 ]
 GRAPHSIZE = 15
+SLEEP_TIME = 2
 
 
 def getstat():
@@ -43,7 +44,7 @@ def main():
 
     while True:
         active1, total1 = getstat()
-        time.sleep(2)
+        time.sleep(SLEEP_TIME)
         active2, total2 = getstat()
         frac = (active2-active1)/(total2-total1)
         history.append(frac)

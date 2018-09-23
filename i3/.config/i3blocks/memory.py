@@ -9,6 +9,7 @@ import sys
 from time import sleep
 
 GRAPH_WIDTH = 20
+SLEEP_TIME = 10
 
 Usage = namedtuple("Usage", ["memtotal", "active", "buffers", "cached",
                              "swaptotal", "swapfree"])
@@ -125,7 +126,7 @@ def main():
             f"{mem_label}[{mgraph}{mamount}] {swap_label}[{samount}]\n",
         )
         sys.stdout.flush()
-        sleep(30)
+        sleep(SLEEP_TIME)
 
 
 if __name__ == '__main__':
