@@ -67,9 +67,8 @@ export ALTERNATE_EDITOR="" \
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
-export PATH=/usr/lib/go-1.10/bin/:$PATH
-export GOPATH=$HOME/gopath
-export PATH=$GOPATH/bin:$PATH
+unset GOPATH
+export PATH=$(go env GOPATH)/bin:$PATH
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
