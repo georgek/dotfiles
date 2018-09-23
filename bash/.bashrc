@@ -60,6 +60,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# sudo completion
+complete -cf sudo
+
 export ALTERNATE_EDITOR="" \
        EDITOR="emacsclient -t" \
        SUDO_EDITOR="emacsclient -t" \
