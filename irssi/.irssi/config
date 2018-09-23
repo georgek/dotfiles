@@ -6,6 +6,7 @@ servers = (
     use_ssl = "yes";
     ssl_verify = "yes";
     ssl_cert = "~/.irssi/irssi.pem";
+    autoconnect = "yes";
   },
   {
     address = "chat.freenode.net";
@@ -14,6 +15,7 @@ servers = (
     use_ssl = "yes";
     ssl_verify = "yes";
     ssl_cert = "~/.irssi/irssi.pem";
+    autoconnect = "yes";
   }
 );
 
@@ -30,6 +32,11 @@ chatnets = {
 channels = (
   { name = "#freenode"; chatnet = "Freenode"; autojoin = "No"; },
   { name = "#oftc"; chatnet = "OFTC"; autojoin = "No"; }
+  { name = "#gentoo"; chatnet = "Freenode"; autojoin = "Yes"; }
+  { name = "#emacs"; chatnet = "Freenode"; autojoin = "Yes"; }
+  { name = "#gentoo-dev-help"; chatnet = "Freenode"; autojoin = "Yes"; }
+  { name = "#osm"; chatnet = "OFTC"; autojoin = "Yes"; }
+  { name = "#osm-gb"; chatnet = "OFTC"; autojoin = "Yes"; }
 );
 
 aliases = {
