@@ -51,10 +51,10 @@ def main():
         graph = render_history(history)
         colour = COLOURS[round(frac*(len(COLOURS)-1))]
         amount = f'<span foreground="{colour}">{frac*100:3.0f}%</span>'
-        sys.stdout.write(       # short
-            f'CPU[{amount}]\n',
-        )
-        sys.stdout.flush()
+        # sys.stdout.write(       # short
+        #     f'CPU[{amount}]\n',
+        # )
+        # sys.stdout.flush()
         sys.stdout.write(       # long
             f'CPU[{graph}{amount}]\n',
         )

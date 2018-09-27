@@ -103,14 +103,15 @@ def main():
         sinks, default_sink_index = get_sinks()
 
     short_name = sinks[default_sink_index].name.split()[0]
-    name = sinks[default_sink_index].name
+    # name = sinks[default_sink_index].name
     if sinks[default_sink_index].muted:
         volume = "----"
     else:
         volume = "{:>3s}%".format(sinks[default_sink_index].volume)
 
-    print(f"{short_name} {volume}")
-    print(f"{name} {volume}")
+    sys.stdout.write(f"{short_name} {volume}\n")
+    # sys.stdout.write(f"{name} {volume}\n")
+    sys.stdout.flush()
 
 
 if __name__ == '__main__':

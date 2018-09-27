@@ -118,10 +118,10 @@ def main():
         swap_label = "Swp"
         samount = swap_amount(usage)
 
-        sys.stdout.write(       # short
-            f"{mem_label}[{mamount}] {swap_label}[{samount}]\n",
-        )
-        sys.stdout.flush()
+        # sys.stdout.write(       # short
+        #     f"{mem_label}[{mamount}] {swap_label}[{samount}]\n",
+        # )
+        # sys.stdout.flush()
         sys.stdout.write(       # long
             f"{mem_label}[{mgraph}{mamount}] {swap_label}[{samount}]\n",
         )
