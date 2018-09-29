@@ -10,6 +10,7 @@ label=♪
 command=$HOME/.config/i3blocks/pulse_control.py
 interval=once
 signal=2
+markup=pango
 
 [disk]
 command=$HOME/.config/i3blocks/display_disk_status.py

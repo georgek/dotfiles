@@ -9,7 +9,15 @@ from subprocess import run, PIPE
 import re
 from collections import namedtuple
 
+YELLOW = "#F0DFAF"
+RED = "#CC9393"
+
 Sink = namedtuple("Sink", ["id", "name", "volume", "muted"])
+
+
+def with_colour(string, colour):
+    """Returns string with pango colour"""
+    return f'<span foreground="{colour}">{string}</span>'
 
 
 def get_sinks():
@@ -36,7 +44,7 @@ def get_sinks():
             continue
         match = re.match(r'\s+volume:\s+[\w-]+:\s+\d+\s+/\s+(\d+)%', line)
         if match:
-            sink_volumes.append(match.group(1))
+            sink_volumes.append(int(match.group(1)))
             continue
         match = re.match(r'\s+muted:\s+(\w+)', line)
         if match:
@@ -102,15 +110,23 @@ def main():
     if button is not None:
         sinks, default_sink_index = get_sinks()
 
+    volume = sinks[default_sink_index].volume
+
     short_name = sinks[default_sink_index].name.split()[0]
     # name = sinks[default_sink_index].name
     if sinks[default_sink_index].muted:
-        volume = "----"
+        volume_str = f"{volume:>3d}~"
     else:
-        volume = "{:>3s}%".format(sinks[default_sink_index].volume)
+        volume_str = f"{volume:>3d}%"
 
-    sys.stdout.write(f"{short_name} {volume}\n")
-    # sys.stdout.write(f"{name} {volume}\n")
+    if volume > 100:
+        volume_str = with_colour(volume_str, RED)
+
+    out_str = f"{short_name} {volume_str}"
+    if sinks[default_sink_index].muted:
+        out_str = with_colour(out_str, YELLOW)
+
+    sys.stdout.write(out_str)
     sys.stdout.flush()
 
 
