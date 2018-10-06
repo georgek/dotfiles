@@ -76,7 +76,7 @@ export PATH=$(go env GOPATH)/bin:$PATH
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code
-#source $HOME/bin/virtualenvwrapper.sh
+source virtualenvwrapper.sh
 
 export PATH="/home/gk/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
