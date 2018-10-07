@@ -83,6 +83,12 @@ export PATH="/home/gk/.pyenv/bin:$PATH"
 #eval "$(pyenv virtualenv-init -)"
 # pyenv virtualenvwrapper_lazy
 
+export NPM_PACKAGES="${HOME}/.npm-packages/"
+export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
+export PATH="${NPM_PACKAGES}/bin:${PATH}"
+unset MANPATH
+MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
