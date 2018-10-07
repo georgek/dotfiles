@@ -166,6 +166,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $inactive-bg-colo
 
 # bar
 bar {
+        # Ubuntu font doesn't work well for bar with block characters
+        font pango:DejaVu Sans Mono 6
   	status_command i3blocks
 	colors {
 		background $bg-color
