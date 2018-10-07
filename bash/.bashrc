@@ -78,17 +78,11 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/code
 source virtualenvwrapper.sh
 
-export PATH="/home/gk/.pyenv/bin:$PATH"
+# export PATH="/home/gk/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 # pyenv virtualenvwrapper_lazy
 
-export NPM_PACKAGES="${HOME}/.npm-packages/"
-export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
-export PATH="${NPM_PACKAGES}/bin:${PATH}"
-unset MANPATH
-MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
-
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
