@@ -188,3 +188,4 @@ exec compton -f -D 3 --vsync opengl
 exec redshift
 
 for_window [class="SpeedCrunch"] floating enable resize set 400 300
+for_window [class="Transmission-gtk"] floating enable
