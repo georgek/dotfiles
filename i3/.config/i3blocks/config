@@ -39,7 +39,6 @@ markup=pango
 [temperature]
 command=$HOME/.config/i3blocks/temperature --chip acpitz-virtual-0 -w 30 -c 40
 interval=10
-separator=false
 
 [temperature]
 command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 45 -c 60
