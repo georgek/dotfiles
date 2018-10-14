@@ -9,6 +9,7 @@ BLOCKS = ("▁", "▂", "▃", "▄", "▅", "▆", "▇", "█")
 COLOURS = (
     "#7F9F7F",           # green
     "#7F9F7F",           # green
+    "#7F9F7F",           # green
     "#F0DFAF",           # yellow
     "#DFAF8F",           # orange
     "#CC9393",           # red
