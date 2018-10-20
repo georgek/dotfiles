@@ -25,11 +25,11 @@ def little_status(status):
     if status == "SSD":
         return '(s)'
     if status == "UP":
-        return f'<span foreground="{COLOURS[2]}">(u)</span>'
+        return f'<span foreground="{COLOURS[-2]}">(u)</span>'
     elif status == "ASLEEP":
         return f'<span foreground="{COLOURS[0]}">(z)</span>'
     else:
-        return f'<span foreground="{COLOURS[3]}">(?)</span>'
+        return f'<span foreground="{COLOURS[-1]}">(?)</span>'
 
 
 def make_block(amount):
