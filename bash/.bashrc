@@ -4,6 +4,7 @@
 
 # colours
 export TERM=xterm-256color
+export TERMINAL=$TERM
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
