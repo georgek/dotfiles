@@ -1,3 +1,4 @@
 *.pem
 /irssi/.irssi/logs/
 .cpu_usage.pkl
+__pycache__
