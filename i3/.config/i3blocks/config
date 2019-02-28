@@ -37,7 +37,7 @@ interval=persist
 markup=pango
 
 [temperature]
-command=$HOME/.config/i3blocks/temperature --chip acpitz-virtual-0 -w 30 -c 40
+command=$HOME/.config/i3blocks/temperature --chip acpitz-acpi-0 -w 30 -c 40
 interval=10
 
 [temperature]
