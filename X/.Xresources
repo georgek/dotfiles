@@ -19,24 +19,40 @@ xterm*eightBitInput:   true
 xterm*metaSendsEscape: true
 xterm*cursorColor: #DCDCCC
 ! Zenburn
-xterm*background:  #3f3f3f
-xterm*foreground:  #dcdccc
-xterm*color0:      #1E2320      !black
-xterm*color1:      #dca3a3      !red
-xterm*color2:      #60b48a      !green
-xterm*color3:      #dfaf8f      !yellow
-xterm*color4:      #506070      !blue
-xterm*color5:      #dc8cc3      !magenta
-xterm*color6:      #8cd0d3      !cyan
-xterm*color7:      #dcdccc      !white
-xterm*color8:      #709080      !black
-xterm*color9:      #dca3a3      !red
-xterm*color10:     #c3bf9f      !green
-xterm*color11:     #f0dfaf      !yellow
-xterm*color12:     #94bff3      !blue
-xterm*color13:     #ec93d3      !magenta
-xterm*color14:     #93e0e3      !cyan
-xterm*color15:     #ffffff      !white
+xterm*background:  #3F3F3F
+xterm*foreground:  #DCDCCC
+!black
+xterm*color0:      #000000
+!red
+xterm*color1:      #CC9393
+!green
+xterm*color2:      #7F9F7F
+!yellow
+xterm*color3:      #F0DFAF
+!blue
+xterm*color4:      #8CD0D3
+!magenta
+xterm*color5:      #DC8CC3
+!cyan
+xterm*color6:      #93E0E3
+!white
+xterm*color7:      #DCDCCC
+!bright black
+xterm*color8:      #6F6F6F
+!bright red
+xterm*color9:      #DCA3A3
+!bright green
+xterm*color10:     #8FB28F
+!bright yellow
+xterm*color11:     #F0DFAF
+!bright blue
+xterm*color12:     #94BFF3
+!bright magenta
+xterm*color13:     #DC8CC3
+!bright cyan
+xterm*color14:     #93E0E3
+!bright white
+xterm*color15:     #FFFFEF
 
 XLock.qix.delay:	20000
 XLock.qix.batchcount:	32
