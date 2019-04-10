@@ -4,6 +4,8 @@ import sys
 
 DISK_STATUS_FILE_NAME = "/tmp/disk_status"
 DISK_USAGE_FILE_NAME = "/tmp/disk_usage"
+# one of the devices might be called /dev/root, if it is, change it to this
+ROOT_DISK_NAME = "sdd"
 
 BLOCKS = ("▁", "▂", "▃", "▄", "▅", "▆", "▇", "█")
 COLOURS = (
@@ -53,6 +55,10 @@ def main():
             disk_usage_dict = dict((item[0], item[4]) for item in items)
     except FileNotFoundError:
         disk_usage_dict = {}
+
+    if "roo" in disk_usage_dict:
+        disk_usage_dict[ROOT_DISK_NAME] = disk_usage_dict["roo"]
+        del disk_usage_dict["roo"]
 
     info = []
     for disk, status, _ in disk_statuses:

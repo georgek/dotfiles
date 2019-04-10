@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 # to be run as a cron job by root
-df -h |\
+df -hl -t ext3 -t ext4 |\
     tail -n+2 |\
     sort -k2,2 -h -r |\
-    head -n+5 |\
     sort -k1,1 |\
     awk '{$1 = substr($1, 6, 3); print}' \
 	> /tmp/disk_usage
