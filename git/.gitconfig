@@ -13,3 +13,5 @@
 	status = auto
 [github]
 	user = georgek
+[push]
+	followTags = true
