@@ -112,8 +112,8 @@ def main():
 
     volume = sinks[default_sink_index].volume
 
-    short_name = sinks[default_sink_index].name.split()[0]
-    # name = sinks[default_sink_index].name
+    # short_name = sinks[default_sink_index].name.split()[0]
+    name = sinks[default_sink_index].name
     if sinks[default_sink_index].muted:
         volume_str = f"{volume:>3d}~"
     else:
@@ -122,7 +122,7 @@ def main():
     if volume > 100:
         volume_str = with_colour(volume_str, RED)
 
-    out_str = f"{short_name} {volume_str}"
+    out_str = f"{name} {volume_str}"
     if sinks[default_sink_index].muted:
         out_str = with_colour(out_str, YELLOW)
 
