@@ -4,8 +4,8 @@
 [url "https://code.orgmode.org/"]
 	insteadOf = git@code.orgmode.org:
 [alias]
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lol = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an %Cgreen%d %Creset%s' --date=short
+	lola = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an %Cgreen%d %Creset%s' --date=short --all
 [color]
 	branch = auto
 	diff = auto
