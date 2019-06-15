@@ -127,6 +127,7 @@ def main():
         out_str = with_colour(out_str, YELLOW)
 
     sys.stdout.write(out_str)
+    sys.stdout.write("\n")
     sys.stdout.flush()
 
 
