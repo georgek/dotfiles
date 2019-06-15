@@ -88,3 +88,6 @@ export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# enable firefox wayland
+#export GDK_BACKEND=wayland
