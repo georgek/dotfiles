@@ -17,3 +17,18 @@ For example:
 Now everything inside bash is symlinked from the directory above ~/.dotfiles.
 
 Inspired by [[https://alexpearce.me/2016/02/managing-dotfiles-with-stow/][this post]].
+
+* Sway
+
+I am currently transitioning from i3 to sway. The sway config is almost the
+same as the i3 config and i3blocks works the same way.
+
+Current issues:
+
+- .Xresources should be copied to .Xdefaults so that things like xterm work
+  properly,
+- vaapi doesn't work due to a problem in the latest libva. There is apparently
+  a patch but it is not yet released:
+  https://github.com/intel/intel-vaapi-driver/issues/419
+- mpv wayland output doesn't work,
+- Firefox wayland output is buggy (menus flicker)
