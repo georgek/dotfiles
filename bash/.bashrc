@@ -19,9 +19,6 @@ export HISTCONTROL=ignoreboth
 shopt -s checkwinsize
 
 # git prompt
-source $HOME/.bash.d/git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-
 if [[ -n $SSH_CLIENT ]]; then
     user_host_colour='1;33'     # yellow
 else
@@ -33,6 +30,8 @@ user_host='\[\e['$user_host_colour'm\]\u@\h'
 wd='\[\e[1;34m\]\w'             # blud
 
 if hash git 2>/dev/null; then
+    source $HOME/.bash.d/git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=1
     git_prompt='\[\e[1;31m\]$(__git_ps1)\[\e[1;0;37m\]' # red
 else
     git_prompt=''
@@ -89,13 +88,17 @@ export ALTERNATE_EDITOR="" \
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
-unset GOPATH
-export PATH=$(go env GOPATH)/bin:$PATH
+if hash go 2>/dev/null; then
+    unset GOPATH
+    export PATH=$(go env GOPATH)/bin:$PATH
+fi
 
 # virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code
-source virtualenvwrapper.sh
+if hash virtualenvwrapper.sh 2>/dev/null; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/code
+    source virtualenvwrapper.sh
+fi
 
 # export PATH="/home/gk/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
