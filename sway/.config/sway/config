@@ -12,15 +12,23 @@ set $up l
 set $right semicolon
 
 # terminal
-set $term xterm
+set $term alacritty
 
 # launcher
 set $menu rofi -show run | xargs swaymsg exec
 set $sshmenu rofi -show ssh | xargs swaymsg exec
 
 ### outputs
-output HDMI-A-1 pos 0 0 res 1920x1080
-output HDMI-A-2 pos 1920 0 res 1920x1080
+output HDMI-A-1 {
+   pos 0 0
+   res 1920x1080
+   background ~/.config/sway/summit.png center
+}
+output HDMI-A-2 {
+   pos 1920 0
+   res 1920x1080
+   background ~/.config/sway/summit.png center
+}
 
 ### inputs
 input 1:1:AT_Translated_Set_2_keyboard {
@@ -146,9 +154,15 @@ bindsym $mod+r mode "resize"
 
 ### media key bindings
 # audio
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5000 && pkill --signal RTMIN+2 i3blocks
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5000 && pkill --signal RTMIN+2 i3blocks
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill --signal RTMIN+2 i3blocks
+bindsym XF86AudioRaiseVolume exec \
+   pactl set-sink-volume @DEFAULT_SINK@ +5000 \
+   && pkill --signal RTMIN+2 i3blocks
+bindsym XF86AudioLowerVolume exec \
+   pactl set-sink-volume @DEFAULT_SINK@ -5000 \
+   && pkill --signal RTMIN+2 i3blocks
+bindsym XF86AudioMute exec \
+   pactl set-sink-mute @DEFAULT_SINK@ toggle \
+   && pkill --signal RTMIN+2 i3blocks
 
 # other
 bindsym XF86Calculator exec speedcrunch
@@ -157,32 +171,62 @@ bindsym XF86Calculator exec speedcrunch
 hide_edge_borders both
 
 # zenburn colours
-set $bg-col            #2B2B2B
-set $inactive-bg-col   #000000
-set $text-col          #DCDCCC
-set $inactive-text-col #656555
-set $urgent-bg-col     #BC8383
-set $border-col        #ffffff
+set $bg+3          #6F6F6F
+set $bg            #3F3F3F
+set $bg-05         #383838
+set $bg-1          #2B2B2B
+set $bg-2          #000000
+set $fg            #DCDCCC
+set $fg-1          #656555
+set $black         #000000
+set $red           #CC9393
+set $red-1         #BC8383
+set $green         #7F9F7F
+set $yellow        #F0DFAF
+set $blue          #94BFF3
+set $magenta       #DC8CC3
+set $cyan          #93E0E3
+set $white         #DCDCCC
 
 # window cols
-#                       border           background       text               indicator   child_border
-client.focused          $bg-col          $bg-col          $text-col          $border-col $bg-col
-client.unfocused        $inactive-bg-col $inactive-bg-col $inactive-text-col $border-col $bg-col
-client.focused_inactive $inactive-bg-col $inactive-bg-col $inactive-text-col $border-col $bg-col
-client.urgent           $urgent-bg-col   $urgent-bg-col   $inactive-bg-col   $border-col $bg-col
+#                       border         background     text           indicator   child_border
+client.focused          $bg-05         $bg-05         $fg            $bg-05       $bg-05
+client.unfocused        $bg-1          $bg-1          $fg-1          $bg-1       $bg-1
+client.focused_inactive $bg-1          $bg-1          $fg-1          $bg-1       $bg-1
+client.urgent           $red-1         $red-1         $fg-1          $bg-1       $bg-1
 
 ### status bar
 bar {
     # Ubuntu font doesn't work well for bar with block characters
     status_command i3blocks
     colors {
-           background $bg-col
-           separator #757575
+           background         $bg-1
+           statusline         $fg
+           focused_background $bg-1
+           focused_statusline $fg
+           separator          $bg+3
            #                  border           background       text
-           focused_workspace  $inactive-bg-col $inactive-bg-col $text-col
-           inactive_workspace $bg-col          $bg-col          $inactive-text-col
-           urgent_workspace   $urgent-bg-col   $urgent-bg-col   $inactive-bg-col
+           focused_workspace  $fg-1            $bg-1            $fg
+           active_workspace   $fg-1            $bg-1            $fg-1
+           inactive_workspace $bg-1            $bg-1            $fg-1
+           urgent_workspace   $red-1           $red-1           $fg-1
     }
 }
 
-include /etc/sway/config.d/*
+
+### gaps
+gaps inner 8
+gaps outer 2
+smart_borders on
+
+
+### misc settings
+mouse_warping none
+
+
+### app specific settings
+for_window [title="SpeedCrunch"] floating enable, resize set 400 300
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="Emacs"] opacity 0.9
+
+Include /etc/sway/config.d/*
