@@ -18,11 +18,29 @@ export HISTCONTROL=ignoreboth
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-# [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+# git prompt
+source $HOME/.bash.d/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
 
-# Comment in the above and uncomment this below for a color prompt
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [[ -n $SSH_CLIENT ]]; then
+    user_host_colour='1;33'     # yellow
+else
+    user_host_colour='1;32'     # green
+fi
+
+user_host='\[\e['$user_host_colour'm\]\u@\h'
+
+wd='\[\e[1;34m\]\w'             # blud
+
+if hash git 2>/dev/null; then
+    git_prompt='\[\e[1;31m\]$(__git_ps1)\[\e[1;0;37m\]' # red
+else
+    git_prompt=''
+fi
+
+end='\$\[\e[00m\]'
+
+PS1="$user_host $wd$git_prompt $end "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
