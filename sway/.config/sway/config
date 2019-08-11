@@ -22,12 +22,12 @@ set $sshmenu rofi -show ssh | xargs swaymsg exec
 output HDMI-A-1 {
    pos 0 0
    res 1920x1080
-   background ~/.config/sway/summit.png center
+   # background ~/.config/sway/summit.png center
 }
 output HDMI-A-2 {
    pos 1920 0
    res 1920x1080
-   background ~/.config/sway/summit.png center
+   # background ~/.config/sway/summit.png center
 }
 
 ### inputs
@@ -215,8 +215,8 @@ bar {
 
 
 ### gaps
-gaps inner 8
-gaps outer 2
+gaps inner 0
+gaps outer 0
 smart_borders on
 
 
