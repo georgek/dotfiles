@@ -88,6 +88,10 @@ def set_default_sink_volume(amount):
 def main():
     """Entry point to program"""
     sinks, default_sink_index = get_sinks()
+    if not sinks:
+        sys.stdout.write("No sinks\n")
+        sys.stdout.flush()
+        return
 
     button = os.environ.get("BLOCK_BUTTON")
     if button == "1":
