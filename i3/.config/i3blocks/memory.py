@@ -97,7 +97,7 @@ def swap_amount(usage: Usage) -> str:
     swap_usage = usage.swaptotal - usage.swapfree
     swap_gib = swap_usage/1024/1024
     swap_str = f"{swap_gib:1.1f}G"
-    swap_proportion = swap_usage/usage.swaptotal
+    swap_proportion = round(swap_usage/usage.swaptotal, 1)
 
     if swap_proportion > 0:
         swap_str = with_colour(swap_str, RED)
