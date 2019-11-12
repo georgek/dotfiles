@@ -29,6 +29,12 @@ def get_sinks():
     default_sink_index = 0
 
     pacmd_output = run(["pacmd", "list-sinks"], stdout=PIPE)
+
+    if pacmd_output.returncode != 0:
+        # try starting the daemon
+        run(["pulseaudio", "--daemon"])
+        pacmd_output = run(["pacmd", "list-sinks"], stdout=PIPE)
+
     i = 0
     for line in pacmd_output.stdout.decode("utf8").splitlines():
         match = re.match(r"^  ( |\*) index: (\d+)$", line)
