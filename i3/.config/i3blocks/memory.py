@@ -22,12 +22,12 @@ ORANGE = "#DFAF8F"
 RED = "#CC9393"
 
 
-def with_colour(string, colour):
+def with_colour(string: str, colour: str) -> str:
     """Returns string with pango colour"""
     return f'<span foreground="{colour}">{string}</span>'
 
 
-def get_usage():
+def get_usage() -> Usage:
     """Get memory usage from /proc/meminfo"""
 
     meminfo = {}
