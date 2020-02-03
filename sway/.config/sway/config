@@ -223,6 +223,7 @@ smart_borders on
 ### misc settings
 mouse_warping none
 
+exec /home/gk/bin/redshift -m wayland -l 52.64:1.29
 
 ### app specific settings
 for_window [title="SpeedCrunch"] floating enable, resize set 400 300
