@@ -2,10 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# colours
-export TERM=xterm-256color
-export TERMINAL=$TERM
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -39,15 +35,17 @@ fi
 
 end='\$\[\e[00m\]'
 
-PS1="$user_host $wd$git_prompt $end "
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    "dumb")
+        PS1="> "
+        ;;
+    xterm*|rxvt*|eterm*|screen*)
+        PS1="$user_host $wd$git_prompt $end "
+        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
 esac
 
 # Alias definitions.
