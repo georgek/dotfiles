@@ -79,10 +79,11 @@ fi
 # sudo completion
 complete -cf sudo
 
+# these are scripts living in ~/bin
 export ALTERNATE_EDITOR="" \
-       EDITOR="emacsclient -t" \
-       SUDO_EDITOR="emacsclient -t" \
-       VISUAL="emacsclient -c"
+       EDITOR="editor" \
+       SUDO_EDITOR="visual" \
+       VISUAL="visual"
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
