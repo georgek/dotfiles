@@ -1,0 +1,3 @@
+#!/bin/bash
+# to be set to VISUAL. It's meant to be a possibly advanced (curses) editor
+emacsclient -t $*

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+unset GDK_BACKEND
+/usr/bin/emacsclient -c

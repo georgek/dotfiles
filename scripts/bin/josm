@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+export _JAVA_AWT_WM_NONREPARENTING=1
+java -jar ~/java/josm-tested.jar
