@@ -19,12 +19,12 @@ set $menu rofi -show run | xargs swaymsg exec
 set $sshmenu rofi -show ssh | xargs swaymsg exec
 
 ### outputs
-output HDMI-A-1 {
+output HDMI-A-2 {
    pos 0 0
    res 1920x1080
    # background ~/.config/sway/summit.png center
 }
-output HDMI-A-2 {
+output HDMI-A-1 {
    pos 1920 0
    res 1920x1080
    # background ~/.config/sway/summit.png center
