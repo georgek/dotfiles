@@ -225,6 +225,13 @@ mouse_warping none
 
 exec /home/gk/bin/redshift -m wayland -l 52.64:1.29
 
+# set GTK3 settings
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+    gsettings set $gnome-schema font-name 'Sans 8'
+}
+
 ### app specific settings
 for_window [title="SpeedCrunch"] floating enable, resize set 400 300
 for_window [class="Transmission-gtk"] floating enable
