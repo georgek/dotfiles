@@ -198,6 +198,7 @@ client.urgent           $red-1         $red-1         $fg-1          $bg-1      
 ### status bar
 bar {
     # Ubuntu font doesn't work well for bar with block characters
+    position bottom
     status_command i3blocks
     colors {
            background         $bg-1
