@@ -36,6 +36,10 @@ command=$HOME/.config/i3blocks/memory.py
 interval=persist
 markup=pango
 
+[cpu_clock]
+command=$HOME/.config/i3blocks/cpu_clock.py
+interval=persist
+
 [temperature]
 command=$HOME/.config/i3blocks/temperature --chip acpitz-acpi-0 -w 30 -c 40
 interval=10
