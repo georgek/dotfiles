@@ -14,17 +14,16 @@ print_new_status () {
 }
 
 if [ -s ${STATUS_FILE} ]; then
-    mv ${STATUS_FILE} ${STATUS_FILE}.old
     while read disk status timeout; do
 	if [ ${timeout} = 0 ]; then
 	    print_new_status ${disk}
 	else
 	    printf "%s %s %d\n" ${disk} ${status} $((timeout-1))
 	fi
-    done < ${STATUS_FILE}.old > ${STATUS_FILE}
-    rm ${STATUS_FILE}.old
+    done < ${STATUS_FILE} > ${STATUS_FILE}.new
+    mv ${STATUS_FILE}.new ${STATUS_FILE}
 else
-    disks=("sda" "sdb" "sdc" "sdd" "sde")
+    disks=("sda" "sdb")
 
     for disk in ${disks[@]}; do
 	print_new_status ${disk}

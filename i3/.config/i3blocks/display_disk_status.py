@@ -5,7 +5,7 @@ import sys
 DISK_STATUS_FILE_NAME = "/tmp/disk_status"
 DISK_USAGE_FILE_NAME = "/tmp/disk_usage"
 # one of the devices might be called /dev/root, if it is, change it to this
-ROOT_DISK_NAME = "sdd"
+ROOT_DISK_NAME = "sda"
 
 BLOCKS = ("▁", "▂", "▃", "▄", "▅", "▆", "▇", "█")
 COLOURS = (
@@ -19,7 +19,7 @@ COLOURS = (
 
 SSDS = (
     "sda",
-    "sdd",
+    "sdb",
 )
 
 
