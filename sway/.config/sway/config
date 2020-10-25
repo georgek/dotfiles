@@ -41,7 +41,7 @@ input 1:1:AT_Translated_Set_2_keyboard {
 bindsym $mod+Return exec $term
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start launcher
 bindsym $mod+d exec $menu
