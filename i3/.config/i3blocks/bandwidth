@@ -106,18 +106,20 @@ echo -n "<span foreground=\"${GREEN}\">$IPADDR</span> "
 
 # incoming
 rx_kib=$(( $rx_rate >> 10 ))
-if [[ "$rx_rate" -gt 838860 ]]; then
-  printf '%sM' "`echo "scale=1; $rx_kib / 1024" | bc`"
+if [[ "$rx_kib" -ge 1000 ]]; then
+  rx_mib=$( echo "scale=1; $rx_kib/1024" | bc)
+  printf '%5.1fM' "${rx_mib}"
 else
-  printf '%3dk' "${rx_kib}"
+  printf '%5dk' "${rx_kib}"
 fi
 
 echo -n "/"
 
 # outgoing
 tx_kib=$(( $tx_rate >> 10 ))
-if [[ "$tx_rate" -gt 838860 ]]; then
-  printf '%sM' "`echo "scale=1; $tx_kib / 1024" | bc`"
+if [[ "$tx_kib" -ge 1000 ]]; then
+  tx_mib=$( echo "scale=1; $tx_kib/1024" | bc)
+  printf '%5.1fM' "${tx_mib}"
 else
-  printf '%3dk' "${tx_kib}"
+  printf '%5dk' "${tx_kib}"
 fi
