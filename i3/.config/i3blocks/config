@@ -5,6 +5,11 @@ separator_block_width=15
 markup=none
 color=#DCDCCC
 
+[uname]
+label=Linux
+command=uname -r
+interval=once
+
 [pulse_control]
 label=♪
 command=$HOME/.config/i3blocks/pulse_control.py
