@@ -108,7 +108,6 @@ export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-eval "$(register-python-argcomplete pipx)"
-
-# enable firefox wayland
-#export GDK_BACKEND=wayland
+if hash pipx 2>/dev/null; then
+    eval "$(register-python-argcomplete pipx)"
+fi
