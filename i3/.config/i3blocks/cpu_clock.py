@@ -32,6 +32,7 @@ def main():
         frequencies = get_frequencies()
         out = " ".join(format_frequency(frequency) for frequency in frequencies)
         sys.stdout.write(out)
+        sys.stdout.write("\n")
         sys.stdout.flush()
         time.sleep(SLEEP_TIME)
 

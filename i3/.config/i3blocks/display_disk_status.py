@@ -71,6 +71,7 @@ def main():
 
     out = " ".join(info)
     sys.stdout.write(out)
+    sys.stdout.write("\n")
     sys.stdout.flush()
 
 

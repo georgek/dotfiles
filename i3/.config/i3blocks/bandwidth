@@ -123,3 +123,5 @@ if [[ "$tx_kib" -ge 1024 ]]; then
 else
   printf '%5dk' "${tx_kib}"
 fi
+
+echo

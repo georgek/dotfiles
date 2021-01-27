@@ -6,12 +6,12 @@ markup=none
 color=#DCDCCC
 
 [uname]
-label=Linux
+label=Linux 
 command=uname -r
 interval=once
 
 [pulse_control]
-label=♪
+label=♪ 
 command=$HOME/.config/i3blocks/pulse_control.py
 interval=once
 signal=2
