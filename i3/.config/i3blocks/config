@@ -12,13 +12,13 @@ interval=once
 
 [pulse_control]
 label=♪ 
-command=$HOME/.config/i3blocks/pulse_control.py
+command=$HOME/.config/i3blocks/pulse_control
 interval=once
 signal=2
 markup=pango
 
 [disk]
-command=$HOME/.config/i3blocks/display_disk_status.py
+command=$HOME/.config/i3blocks/display_disk_status
 interval=once
 signal=3
 markup=pango
@@ -29,7 +29,7 @@ interval=5
 markup=pango
 
 [cpu_usage]
-command=$HOME/.config/i3blocks/cpu_usage.py
+command=$HOME/.config/i3blocks/cpu_usage
 interval=persist
 markup=pango
 
@@ -37,12 +37,12 @@ markup=pango
 interval=10
 
 [memory]
-command=$HOME/.config/i3blocks/memory.py
+command=$HOME/.config/i3blocks/memory
 interval=persist
 markup=pango
 
 [cpu_clock]
-command=$HOME/.config/i3blocks/cpu_clock.py
+command=$HOME/.config/i3blocks/cpu_clock
 interval=persist
 
 [temperature]
