@@ -96,6 +96,7 @@ def main():
     sinks, default_sink_index = get_sinks()
     if not sinks:
         sys.stdout.write("No sinks\n")
+        sys.stdout.write("\n")
         sys.stdout.flush()
         return
 
