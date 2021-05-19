@@ -9,6 +9,15 @@ servers = (
     autoconnect = "yes";
   },
   {
+    address = "irc.libera.chat";
+    chatnet = "Libera.Chat";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    ssl_cert = "~/.irssi/irssi.pem";
+    autoconnect = "yes";
+  },
+  {
     address = "chat.freenode.net";
     chatnet = "Freenode";
     port = "7000";
