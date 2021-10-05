@@ -16,35 +16,17 @@ servers = (
     ssl_verify = "yes";
     ssl_cert = "~/.irssi/irssi.pem";
     autoconnect = "yes";
-  },
-  {
-    address = "chat.freenode.net";
-    chatnet = "Freenode";
-    port = "7000";
-    use_ssl = "yes";
-    ssl_verify = "yes";
-    ssl_cert = "~/.irssi/irssi.pem";
-    autoconnect = "yes";
   }
 );
 
 chatnets = {
-  Freenode = {
-    type = "IRC";
-    max_kicks = "1";
-    max_msgs = "4";
-    max_whois = "1";
-  };
   OFTC = { type = "IRC"; max_kicks = "1"; max_msgs = "1"; max_whois = "1"; };
+  "Libera.Chat" = { type = "IRC"; };
 };
 
 channels = (
-  { name = "#freenode"; chatnet = "Freenode"; autojoin = "No"; },
-  { name = "#oftc"; chatnet = "OFTC"; autojoin = "No"; }
-  { name = "#gentoo"; chatnet = "Freenode"; autojoin = "Yes"; }
-  { name = "#emacs"; chatnet = "Freenode"; autojoin = "Yes"; }
-  { name = "#gentoo-dev-help"; chatnet = "Freenode"; autojoin = "Yes"; }
-  { name = "#osm"; chatnet = "OFTC"; autojoin = "Yes"; }
+  { name = "#oftc"; chatnet = "OFTC"; autojoin = "No"; },
+  { name = "#osm"; chatnet = "OFTC"; autojoin = "Yes"; },
   { name = "#osm-gb"; chatnet = "OFTC"; autojoin = "Yes"; }
 );
 
