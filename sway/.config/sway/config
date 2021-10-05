@@ -31,7 +31,7 @@ output HDMI-A-1 {
 }
 
 ### inputs
-input 1:1:AT_Translated_Set_2_keyboard {
+input * {
       xkb_layout gb
 }
 
