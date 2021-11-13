@@ -1,6 +1,8 @@
 [user]
 	email = kettleg@gmail.com
 	name = George Kettleborough
+[init]
+	defaultBranch = master
 [url "https://code.orgmode.org/"]
 	insteadOf = git@code.orgmode.org:
 [alias]
