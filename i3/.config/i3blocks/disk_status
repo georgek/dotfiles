@@ -23,7 +23,7 @@ if [ -s ${STATUS_FILE} ]; then
     done < ${STATUS_FILE} > ${STATUS_FILE}.new
     mv ${STATUS_FILE}.new ${STATUS_FILE}
 else
-    disks=("sda" "sdb")
+    disks=("sda")
 
     for disk in ${disks[@]}; do
 	print_new_status ${disk}

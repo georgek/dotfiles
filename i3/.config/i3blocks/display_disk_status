@@ -19,7 +19,6 @@ COLOURS = (
 
 SSDS = (
     "sda",
-    "sdb",
 )
 
 
