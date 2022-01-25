@@ -26,3 +26,7 @@
 	rebase = false
 [init]
 	defaultBranch = master
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	algorithm = histogram
