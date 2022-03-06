@@ -166,6 +166,7 @@ bindsym XF86AudioMute exec \
 
 # other
 bindsym XF86Calculator exec speedcrunch
+bindsym XF86Homepage exec loginctl suspend
 
 ### appearance
 hide_edge_borders both
