@@ -194,7 +194,7 @@ set $white         #DCDCCC
 client.focused          $bg-05         $bg-05         $fg            $bg-05       $bg-05
 client.unfocused        $bg-1          $bg-1          $fg-1          $bg-1       $bg-1
 client.focused_inactive $bg-1          $bg-1          $fg-1          $bg-1       $bg-1
-client.urgent           $red-1         $red-1         $fg-1          $bg-1       $bg-1
+client.urgent           $red-1         $red-1         $black         $bg-1       $bg-1
 
 ### status bar
 bar {
@@ -211,7 +211,7 @@ bar {
            focused_workspace  $fg-1            $bg-1            $fg
            active_workspace   $fg-1            $bg-1            $fg-1
            inactive_workspace $bg-1            $bg-1            $fg-1
-           urgent_workspace   $red-1           $red-1           $fg-1
+           urgent_workspace   $red-1           $red-1           $black
     }
 }
 

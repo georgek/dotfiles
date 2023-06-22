@@ -50,7 +50,7 @@ command=$HOME/.config/i3blocks/temperature --chip acpitz-acpi-0 -w 30 -c 40
 interval=10
 
 [temperature]
-command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 45 -c 60
+command=$HOME/.config/i3blocks/temperature --chip coretemp-isa-0000 -w 45 -c 70
 interval=10
 
 [time]
