@@ -7,27 +7,25 @@ import time
 SLEEP_TIME = 1
 
 
-def get_frequencies():
+def get_frequencies() -> tuple[int, int]:
     process = subprocess.run(
         ["grep", "--color=never", "cpu MHz", "/proc/cpuinfo"], capture_output=True
     )
-    output = process.stdout.decode("utf8").strip()
-
-    frequencies = [
-        float(line.split()[-1]) for line in output.splitlines()
-    ]
-    return frequencies
+    lines = process.stdout.decode("utf8").strip().splitlines()
+    freq_strs = (line.split()[-1] for line in lines)
+    frequencies = [int(s.split(".")[0]) for s in freq_strs]
+    return max(frequencies), min(frequencies)
 
 
-def format_frequency(frequency):
+def format_frequency(frequency: int) -> str:
     if frequency >= 1000:
-        frequency /= 1000
-        return f"{frequency:1.1f}GHz"
+        freq_float = frequency / 1000
+        return f"{freq_float:1.1f}GHz"
     else:
-        return f"{frequency:>3.0f}MHz"
+        return f"{frequency:>3}MHz"
 
 
-def main():
+def main() -> None:
     while True:
         frequencies = get_frequencies()
         out = " ".join(format_frequency(frequency) for frequency in frequencies)
