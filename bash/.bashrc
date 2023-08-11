@@ -87,6 +87,21 @@ export ALTERNATE_EDITOR="" \
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
+# direnv
+if hash direnv 2>/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+# python venv
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV)) "
+  fi
+}
+export -f show_virtual_env
+PS1='$(show_virtual_env)'$PS1
+
+# golang
 if hash go 2>/dev/null; then
     unset GOPATH
     export PATH=$(go env GOPATH)/bin:$PATH
@@ -111,3 +126,5 @@ export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
 if hash pipx 2>/dev/null; then
     eval "$(register-python-argcomplete pipx)"
 fi
+
+CALIBRE_USE_DARK_PALETTE=1
