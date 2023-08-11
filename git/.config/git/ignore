@@ -2,3 +2,7 @@
 *-autoloads.el
 dir
 .~/
+
+# direnv
+.envrc
+.direnv
