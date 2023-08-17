@@ -1,8 +1,8 @@
 ! Emacs (for emacsclient; needs to be same as in .emacs)
-emacs.font: Ubuntu Mono-9
+emacs.font: UbuntuMono Nerd Font-9
 
 ! XTerm
-xterm*faceName: Ubuntu Mono
+xterm*faceName: UbuntuMono Nerd Font
 xterm*faceSize: 9
 
 xterm*internalBorder:        0
