@@ -35,6 +35,10 @@ fi
 
 end='\$\[\e[00m\]'
 
+if [ "$TERM" = "xterm" ]; then
+    export TERM=xterm-256color
+fi
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     "dumb")
