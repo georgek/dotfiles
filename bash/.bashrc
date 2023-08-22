@@ -114,17 +114,25 @@ if hash virtualenvwrapper.sh 2>/dev/null; then
     source virtualenvwrapper.sh
 fi
 
+# pyenv
 # export PATH="/home/gk/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 # pyenv virtualenvwrapper_lazy
 
+# nvm
 export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# pipx
 if hash pipx 2>/dev/null; then
     eval "$(register-python-argcomplete pipx)"
+fi
+
+# kubectl
+if hash kubectl 2>/dev/null; then
+    source <(kubectl completion bash)
 fi
 
 CALIBRE_USE_DARK_PALETTE=1
