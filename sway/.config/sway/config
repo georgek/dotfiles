@@ -246,8 +246,8 @@ exec_always {
 }
 
 ### app specific settings
-for_window [title="SpeedCrunch"] floating enable, resize set 400 300
-for_window [class="Transmission-gtk"] floating enable
-for_window [class="Emacs"] opacity 0.9
+for_window [app_id="org.speedcrunch.speedcrunch"] floating enable, resize set 400 400, opacity 0.9
+for_window [app_id="org.keepassxc.KeePassXC"] floating enable, resize set 800 600, opacity 0.9
+for_window [app_id="emacs"] focus_on_window_activation smart
 
 Include /etc/sway/config.d/*
