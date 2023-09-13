@@ -150,6 +150,7 @@ fi
 # kubectl
 if hash kubectl 2>/dev/null; then
     source <(kubectl completion bash)
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
 CALIBRE_USE_DARK_PALETTE=1
