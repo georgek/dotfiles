@@ -11,7 +11,7 @@ command=uname -r
 interval=once
 
 [pulse_control]
-label=♪ 
+label=  
 command=$HOME/.config/i3blocks/pulse_control
 interval=once
 signal=2
