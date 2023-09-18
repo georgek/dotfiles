@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# bemenu has no config file, so this is kind of it for me
+# for bemenu 0.6.15
+
+# zenburn colours:
+
+bgp3="#6F6F6F"
+bg="#3F3F3F"
+bgm05="#383838"
+bgm1="#2B2B2B"
+bgm2="#000000"
+fg="#DCDCCC"
+fgm1="#656555"
+black="#000000"
+red="#CC9393"
+redm1="#BC8383"
+green="#7F9F7F"
+yellow="#F0DFAF"
+blue="#94BFF3"
+magenta="#DC8CC3"
+cyan="#93E0E3"
+white="#DCDCCC"
+
+alpha="DD"
+alphap1="EE"
+
+args=(
+    -c                          # centre
+    -p '$'                      # prompt
+    -P '>'                      # select
+    -i                          # ignore case
+    --fixed-height
+    --counter always
+    --scrollbar none
+    -C                          # no mouse
+    -l 12                       # 12 lines
+    -s                          # no spacing
+    -W 0.5                      # 50% width
+    -B 1                        # 1px border
+    --fn "Ubuntu Mono 11"       # font
+    --tb ${bg}                  # Title background.
+    --tf ${green}               # Title foreground.
+    --fb ${bg}${alpha}          # Filter background.
+    --ff ${white}               # Filter foreground
+    --cb ${bg}${alpha}          # Cursor background.
+    --cf ${yellow}              # Cursor foreground
+    --nb ${bg}${alpha}          # Normal background.
+    --nf ${fg}                  # Normal foreground.
+    --hb ${bgp3}${alpha}        # Highlighted background.
+    --hf ${cyan}                # Highlighted foreground.
+    --fbb ${bg}${alpha}         # Feedback background.
+    --fbf ${fg}                 # Feedback foreground.
+    --sb ${bg}${alphap1}        # Selected background.
+    --sf ${fg}                  # Selected foreground.
+    --ab ${bg}${alpha}          # Alternating background color.
+    --af ${fg}                  # Alternating foreground color.
+    --scb ${bg}${alpha}         # Scrollbar background.
+    --scf ${fg}                 # Scrollbar foreground.
+    --bdr ${bgm2}               # Border colour.
+)
+
+bemenu-run "${args[@]}"
