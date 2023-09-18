@@ -238,7 +238,7 @@ smart_borders on
 ### misc settings
 mouse_warping none
 
-exec /home/gk/bin/redshift -m wayland -l 52.64:1.29
+exec wlsunset -l 52.64 -L 1.29
 
 # set GTK3 settings
 set $gnome-schema org.gnome.desktop.interface
