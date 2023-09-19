@@ -23,7 +23,7 @@ fi
 
 user_host='\[\e['$user_host_colour'm\]\u@\h'
 
-wd='\[\e[1;34m\]\w'             # blud
+wd='\[\e[1;34m\]\w'             # blue
 
 if hash git 2>/dev/null; then
     source $HOME/.bash.d/git-prompt.sh
