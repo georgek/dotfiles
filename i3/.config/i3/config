@@ -187,5 +187,7 @@ bindsym XF86Calculator exec speedcrunch
 exec compton -f -D 3 --vsync opengl
 exec redshift
 
+### app specific settings
 for_window [class="SpeedCrunch"] floating enable resize set 400 300
+for_window [class="keepassxc"] floating enable, resize set 800 600
 for_window [class="Transmission-gtk"] floating enable
