@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  dimensions:
-    columns: 0
-    lines: 0
+  # dimensions:
+  #   columns: 0
+  #   lines: 0
   opacity: 1.0
 
   # Window position (changes require restart)
@@ -236,7 +236,7 @@ colors:
 bell:
   animation: EaseOutExpo
   duration: 0
-  color: '0xffffff'
+  color: '#ffffff'
 
 # Mouse bindings
 #
@@ -284,7 +284,8 @@ cursor:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  style: Block
+  style:
+    shape: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
@@ -343,9 +344,6 @@ debug:
 
   # Print all received window events.
   print_events: false
-
-  # Record all characters and escape sequences as test data.
-  ref_test: false
 
 # Key bindings
 #
