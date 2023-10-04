@@ -1,6 +1,6 @@
 ### sway configuration
 
-font pango:DejaVu Sans Mono 6
+font pango:UbuntuMono Nerd Font 7
 
 # windoze key
 set $mod Mod4
