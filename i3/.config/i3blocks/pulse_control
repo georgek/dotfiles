@@ -12,6 +12,13 @@ from collections import namedtuple
 YELLOW = "#F0DFAF"
 RED = "#CC9393"
 
+AUDIO_HIGH_SYMBOL = " "
+AUDIO_MED_SYMBOL = " "
+AUDIO_MED_THRESHOLD = 70
+AUDIO_LOW_SYMBOL = "󰕿 "
+AUDIO_LOW_THRESHOLD = 30
+AUDIO_MUTED_SYMBOL = "󰝟 "
+
 Sink = namedtuple("Sink", ["id", "name", "volume", "muted"])
 
 
@@ -121,11 +128,21 @@ def main():
     if button is not None:
         sinks, default_sink_index = get_sinks()
 
+    muted = sinks[default_sink_index].muted
     volume = sinks[default_sink_index].volume
 
-    # short_name = sinks[default_sink_index].name.split()[0]
+    if muted:
+        symbol = AUDIO_MUTED_SYMBOL
+    elif volume > AUDIO_MED_THRESHOLD:
+        symbol = AUDIO_HIGH_SYMBOL
+    elif volume > AUDIO_LOW_THRESHOLD:
+        symbol = AUDIO_MED_SYMBOL
+    else:
+        symbol = AUDIO_LOW_SYMBOL
+
     name = sinks[default_sink_index].name
-    if sinks[default_sink_index].muted:
+
+    if muted:
         volume_str = f"{volume:>3d}~"
     else:
         volume_str = f"{volume:>3d}%"
@@ -133,8 +150,8 @@ def main():
     if volume > 100:
         volume_str = with_colour(volume_str, RED)
 
-    out_str = f"{name} {volume_str}"
-    if sinks[default_sink_index].muted:
+    out_str = f"{symbol} {name} {volume_str}"
+    if muted:
         out_str = with_colour(out_str, YELLOW)
 
     sys.stdout.write(out_str)
