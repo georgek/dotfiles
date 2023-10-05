@@ -105,9 +105,7 @@ HISTFILESIZE=
 HISTSIZE=
 HISTTIMEFORMAT="[%F %T] "
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
+# don't put duplicate lines in the history and ignore lines starting with space
 export HISTCONTROL=ignoreboth
 
 shopt -s histappend
@@ -138,7 +136,7 @@ _set_local_histfile() {
     history -r
 }
 
-PROMPT_COMMAND="_set_local_histfile;history -a;$PROMPT_COMMAND"
+PROMPT_COMMAND="_set_local_histfile;$PROMPT_COMMAND"
 
 # direnv
 if hash direnv 2>/dev/null; then
