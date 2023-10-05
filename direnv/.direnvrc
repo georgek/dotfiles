@@ -10,6 +10,10 @@ layout_virtualenvwrapper() {
   layout_virtualenv $venv_path
 }
 
+use_localhist() {
+    export LOCAL_HISTFILE=1
+}
+
 # Local Variables:
 # mode: sh
 # End:

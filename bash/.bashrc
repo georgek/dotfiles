@@ -5,11 +5,6 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -103,6 +98,47 @@ export ALTERNATE_EDITOR="" \
        VISUAL="visual"
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+
+### History Stuff
+
+HISTFILESIZE=
+HISTSIZE=
+HISTTIMEFORMAT="[%F %T] "
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+shopt -s histappend
+
+# record local history when DIRENV_FILE and LOCAL_HISTFILE is set
+_set_local_histfile() {
+    history -a
+
+    if [[ -n $DIRENV_FILE ]] && [[ -n $LOCAL_HISTFILE ]]; then
+        local histfile_local=${HOME}/.bash_history.d/${DIRENV_FILE%\/*}
+        mkdir -p $(dirname $histfile_local)
+        touch $histfile_local
+        chmod 600 $histfile_local
+    else
+        local histfile_local=${HOME}/.bash_history
+    fi
+
+    [[ "$HISTFILE" == "$histfile_local" ]] && return
+
+    # switch history to new file
+    echo "Writing Bash history to $histfile_local"
+
+    history -w
+    history -c
+
+    export HISTFILE=$histfile_local
+
+    history -r
+}
+
+PROMPT_COMMAND="_set_local_histfile;history -a;$PROMPT_COMMAND"
 
 # direnv
 if hash direnv 2>/dev/null; then
