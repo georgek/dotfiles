@@ -168,10 +168,10 @@ bindsym $mod+r mode "resize"
 ### media key bindings
 # audio
 bindsym XF86AudioRaiseVolume exec \
-   pactl set-sink-volume @DEFAULT_SINK@ +5000 \
+   pactl set-sink-volume @DEFAULT_SINK@ +1dB \
    && pkill --signal RTMIN+2 i3blocks
 bindsym XF86AudioLowerVolume exec \
-   pactl set-sink-volume @DEFAULT_SINK@ -5000 \
+   pactl set-sink-volume @DEFAULT_SINK@ -1dB \
    && pkill --signal RTMIN+2 i3blocks
 bindsym XF86AudioMute exec \
    pactl set-sink-mute @DEFAULT_SINK@ toggle \
