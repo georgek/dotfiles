@@ -1,0 +1,23 @@
+[general]
+accounts = Mail
+maxsyncaccounts = 1
+ui = TTY.TTYUI
+
+[Account Mail]
+localrepository = Local
+remoterepository = Remote
+
+[Repository Local]
+type = IMAP
+preauthtunnel = dovecot -c ~/.dovecotrc --exec-mail imap
+
+[Repository Remote]
+type = IMAP
+# or "type = Gmail", if applicable
+remotehost = my.mail.server
+remoteuser = myuser
+remotepass = mypassword
+ssl = yes
+maxconnections = 1
+realdelete = no
+folderfilter = lambda foldername: re.search("^Lists\.", foldername)

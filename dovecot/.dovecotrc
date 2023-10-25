@@ -1,0 +1,4 @@
+protocols = imap
+mail_location = maildir:~/mail/caches/offlineimap
+auth default {
+}
