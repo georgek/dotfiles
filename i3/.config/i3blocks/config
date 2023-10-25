@@ -26,7 +26,7 @@ markup=pango
 [dotfile]
 command=$HOME/.config/i3blocks/git_status
 GIT_REPO=~/dotfiles
-GIT_UPSTREAM=origin/master
+GIT_UPSTREAM=github/master
 interval=60
 markup=pango
 

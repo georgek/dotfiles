@@ -65,6 +65,7 @@ def main():
         f"{git_icon} {git_repo.name} {branch_icon} {git_branch}",
         colour=colour,
     )
+    print(status, file=sys.stderr)
 
 
 if __name__ == '__main__':
