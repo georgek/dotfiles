@@ -38,6 +38,7 @@ input * {
 
 # start a terminal
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term --class floating
 
 # kill focused window
 bindsym $mod+q kill
@@ -251,5 +252,7 @@ exec_always {
 for_window [app_id="org.speedcrunch.speedcrunch"] floating enable, resize set 400 400, opacity 0.9
 for_window [app_id="org.keepassxc.KeePassXC"] floating enable, resize set 800 600, opacity 0.9
 for_window [app_id="emacs"] focus_on_window_activation smart
+
+for_window [app_id="floating"] floating enable, move position center, resize set 600 400, opacity 0.95
 
 Include /etc/sway/config.d/*
