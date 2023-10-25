@@ -6,8 +6,7 @@ markup=none
 color=#DCDCCC
 
 [uname]
-label=Linux 
-command=uname -r
+command=uname -sr
 interval=once
 
 [org]
