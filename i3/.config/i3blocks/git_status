@@ -37,7 +37,7 @@ def main():
     git_branch = proc.stdout.decode().strip()
 
     # working dir status
-    proc = run(["git", "status", "--porcelain"], stdout=PIPE, cwd=git_repo)
+    proc = run(["git", "status", "--porcelain", "--ignore-submodules"], stdout=PIPE, cwd=git_repo)
     git_status = proc.stdout.decode()
 
     # unpulled
