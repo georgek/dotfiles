@@ -10,6 +10,13 @@ label=Linux
 command=uname -r
 interval=once
 
+[org]
+command=/home/george.kettleborough/.config/i3blocks/git_status
+GIT_REPO=/home/george.kettleborough/org
+GIT_UPSTREAM=origin/master
+interval=10
+markup=pango
+
 [pulse_control]
 command=$HOME/.config/i3blocks/pulse_control
 interval=once

@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+
+import os
+import sys
+from pathlib import Path
+from subprocess import run, PIPE
+
+git_icon = "󰊢"
+branch_icon = ""
+
+green = "#7F9F7F"
+yellow = "#F0DFAF"
+red = "#CC9393"
+
+
+def out_with_colour(string, colour=None) -> None:
+    out = with_colour(string, colour)
+    sys.stdout.write(out)
+    sys.stdout.write("\n")
+    sys.stdout.flush()
+
+
+def with_colour(string, colour=None):
+    """Returns string with pango colour"""
+    if colour:
+        return f'<span foreground="{colour}">{string}</span>'
+    return string
+
+
+def main():
+    git_repo = os.environ.get("GIT_REPO")
+    git_repo = Path(git_repo)
+
+    git_upstream = os.environ.get("GIT_UPSTREAM")
+
+    proc = run(["git", "branch", "--show-current"], stdout=PIPE, cwd=git_repo)
+    git_branch = proc.stdout.decode().strip()
+
+    # working dir status
+    proc = run(["git", "status", "--porcelain"], stdout=PIPE, cwd=git_repo)
+    git_status = proc.stdout.decode()
+
+    # unpulled
+    proc = run(["git", "log", "--oneline", f"HEAD..{git_upstream}"], stdout=PIPE, cwd=git_repo)
+    git_unpulled = proc.stdout.decode()
+
+    # unpushed
+    proc = run(["git", "log", "--oneline", f"{git_upstream}..HEAD"], stdout=PIPE, cwd=git_repo)
+    git_unpushed = proc.stdout.decode()
+
+    if git_status:
+        status = "dirty"
+        colour = yellow
+    elif git_unpushed:
+        status = "push"
+        colour = yellow
+    elif git_unpulled:
+        status = "pull"
+        colour = red
+    else:
+        status = "clean"
+        colour = green
+
+    out_with_colour(
+        f"{git_icon} {git_repo.name} {branch_icon} {git_branch}",
+        colour=colour,
+    )
+
+
+if __name__ == '__main__':
+    main()
