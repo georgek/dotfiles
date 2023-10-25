@@ -13,21 +13,21 @@ interval=once
 command=$HOME/.config/i3blocks/git_status
 GIT_REPO=~/org
 GIT_UPSTREAM=origin/master
-interval=60
+interval=300
 markup=pango
 
 [.emacs.d]
 command=$HOME/.config/i3blocks/git_status
 GIT_REPO=~/.emacs.d
 GIT_UPSTREAM=origin/master
-interval=60
+interval=300
 markup=pango
 
 [dotfile]
 command=$HOME/.config/i3blocks/git_status
 GIT_REPO=~/dotfiles
 GIT_UPSTREAM=github/master
-interval=60
+interval=300
 markup=pango
 
 [pulse_control]
