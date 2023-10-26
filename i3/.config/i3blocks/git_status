@@ -48,15 +48,15 @@ def main():
     # unpushed
     git_unpushed = run_git("log", "--oneline", f"{git_upstream}..HEAD")
 
-    if git_status:
+    if git_unpulled:
+        status = "pull"
+        colour = red
+    elif git_status:
         status = "dirty"
         colour = yellow
     elif git_unpushed:
         status = "push"
         colour = yellow
-    elif git_unpulled:
-        status = "pull"
-        colour = red
     else:
         status = "clean"
         colour = green
