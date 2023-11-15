@@ -178,6 +178,21 @@ bindsym XF86AudioMute exec \
    pactl set-sink-mute @DEFAULT_SINK@ toggle \
    && pkill --signal RTMIN+2 i3blocks
 
+# screenshot (grim + slurp + jq + swappy)
+set $screenshot 1 whole, 2 window, 3 select
+mode "$screenshot" {
+    bindsym 1 exec wl-screenshot-whole, mode "default"
+    bindsym 2 exec wl-screenshot-window, mode "default"
+    bindsym 3 exec wl-screenshot-select, mode "default"
+
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Print mode "default"
+}
+
+bindsym Print mode "$screenshot"
+
 # other
 bindsym XF86Calculator exec speedcrunch
 bindsym XF86Homepage exec loginctl suspend
@@ -251,6 +266,7 @@ exec_always {
 ### app specific settings
 for_window [app_id="org.speedcrunch.speedcrunch"] floating enable, resize set 400 400, opacity 0.9
 for_window [app_id="org.keepassxc.KeePassXC"] floating enable, resize set 800 600, opacity 0.9
+for_window [app_id="imv"] floating enable, resize set 800 600
 for_window [app_id="emacs"] focus_on_window_activation smart
 
 for_window [app_id="floating"] floating enable, move position center, resize set 600 400, opacity 0.95
