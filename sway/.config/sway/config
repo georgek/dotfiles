@@ -193,6 +193,10 @@ mode "$screenshot" {
 
 bindsym Print mode "$screenshot"
 
+# clipboard
+exec wl-paste -t text --watch clipman store --max-items 1024 --no-persist
+bindsym $mod+y exec clipman pick --tool=wofi --max-items=30
+
 # other
 bindsym XF86Calculator exec speedcrunch
 bindsym XF86Homepage exec loginctl suspend
