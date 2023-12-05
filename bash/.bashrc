@@ -101,6 +101,9 @@ export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 
 ### History Stuff
 
+# allow use of C-s
+stty -ixon
+
 HISTFILESIZE=
 HISTSIZE=
 HISTTIMEFORMAT="[%F %T] "
