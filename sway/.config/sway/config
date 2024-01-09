@@ -18,16 +18,8 @@ set $term alacritty
 set $menu bemenu-gk | xargs swaymsg exec
 
 ### outputs
-output HDMI-A-1 {
-   pos 0 0
-   res 1920x1080
-   # background ~/.config/sway/summit.png center
-}
-output HDMI-A-2 {
-   pos 1920 0
-   res 1920x1080
-   # background ~/.config/sway/summit.png center
-}
+output DP-1 mode 3840x2160@60Hz pos 0 0 scale 2 subpixel rgb adaptive_sync on
+output DP-2 mode 3840x2160@60Hz pos 1920 0 scale 2 subpixel rgb adaptive_sync on
 
 ### inputs
 input * {
