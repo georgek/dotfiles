@@ -30,3 +30,11 @@
 	conflictStyle = zdiff3
 [diff]
 	algorithm = histogram
+[rerere]
+	enabled = true
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckobjects = true
