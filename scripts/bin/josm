@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on --add-exports=java.base/sun.security.action=ALL-UNNAMED --add-exports=java.desktop/com.sun.imageio.plugins.jpeg=ALL-UNNAMED --add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED"
 export _JAVA_AWT_WM_NONREPARENTING=1
-java -jar ~/java/josm-tested.jar
+java  -jar ~/java/josm-tested.jar
