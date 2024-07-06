@@ -189,3 +189,13 @@ if hash kubectl 2>/dev/null; then
     source <(kubectl completion bash)
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
+
+# rust
+if hash cargo 2>/dev/null; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if hash rustup 2>/dev/null; then
+    source <( rustup completions bash )
+    source <( rustup completions bash cargo )
+fi
