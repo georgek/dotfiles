@@ -184,10 +184,14 @@ if hash pipx 2>/dev/null; then
     eval "$(register-python-argcomplete pipx)"
 fi
 
-# kubectl
+# kubernetes
 if hash kubectl 2>/dev/null; then
     source <(kubectl completion bash)
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+
+if hash flux 2>/dev/null; then
+    source <(flux completion bash)
 fi
 
 # rust
