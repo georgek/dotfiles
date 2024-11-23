@@ -197,6 +197,10 @@ if hash flux 2>/dev/null; then
     source <(flux completion bash)
 fi
 
+if hash talosctl 2>/dev/null; then
+    source <(talosctl completion bash)
+fi
+
 # rust
 if hash cargo 2>/dev/null; then
     export PATH="$HOME/.cargo/bin:$PATH"
