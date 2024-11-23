@@ -161,6 +161,9 @@ if hash go 2>/dev/null; then
     export PATH=$(go env GOPATH)/bin:$PATH
 fi
 
+# gpg
+export GPG_TTY=$(tty)
+
 # virtualenvwrapper
 if hash virtualenvwrapper.sh 2>/dev/null; then
     export WORKON_HOME=$HOME/.virtualenvs
