@@ -1,7 +1,9 @@
+# emacs
 *.elc
 *-autoloads.el
 dir
 .~/
+.dir-locals.el
 
 # direnv
 .envrc
