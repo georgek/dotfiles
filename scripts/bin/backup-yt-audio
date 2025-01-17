@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# if you like something; make sure you have your own copy
+
+youtube-dl -x --prefer-free-formats $1
