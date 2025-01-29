@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# a tree that respects gitignore
+
+rg --files $@|tree --fromfile --dirsfirst
