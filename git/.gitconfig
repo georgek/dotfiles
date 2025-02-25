@@ -32,6 +32,7 @@
 	algorithm = histogram
 [rerere]
 	enabled = true
+	autoupdate = true
 [transfer]
 	fsckobjects = true
 [fetch]
