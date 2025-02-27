@@ -178,9 +178,12 @@ fi
 # pyenv virtualenvwrapper_lazy
 
 # nvm
-export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# export NVM_DIR="$HOME/dotfiles/nvm/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# npm install -g to home dir
+export NPM_CONFIG_PREFIX=$HOME/.local/
 
 # pipx
 if hash pipx 2>/dev/null; then
