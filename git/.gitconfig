@@ -43,3 +43,5 @@
 	fsckobjects = true
 [receive]
 	fsckobjects = true
+[tag]
+	sort = version:refname
