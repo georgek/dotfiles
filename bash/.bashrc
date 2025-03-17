@@ -202,6 +202,7 @@ fi
 
 if hash talosctl 2>/dev/null; then
     source <(talosctl completion bash)
+    export TALOSCONFIG=$HOME/.config/talos/config
 fi
 
 # rust
