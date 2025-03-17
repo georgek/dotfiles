@@ -188,6 +188,9 @@ bindsym Print mode "$screenshot"
 # audio
 exec gentoo-pipewire-launcher restart &
 
+# notifications
+exec mako
+
 # clipboard
 exec wl-paste -t text --watch clipman store --max-items 1024 --no-persist
 bindsym $mod+y exec clipman pick --tool=wofi --max-items=30
