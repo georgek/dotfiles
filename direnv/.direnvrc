@@ -71,18 +71,22 @@ layout_hatch() {
 }
 
 layout_uv() {
-    if [[ -d ".venv" ]]; then
-        VIRTUAL_ENV="$(pwd)/.venv"
+    local xdg_data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
+    local venv_path=$xdg_data_home/uv/venvs/${PWD} # PWD will always be the direnv dir
+
+    if [[ -d $venv_path ]]; then
+        VIRTUAL_ENV=$venv_path
     fi
 
     if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
         log_status "No virtual environment exists. Executing \`uv venv\` to create one."
-        uv venv
-        VIRTUAL_ENV="$(pwd)/.venv"
+        uv venv $venv_path
+        VIRTUAL_ENV=$venv_path
     fi
 
     PATH_add "$VIRTUAL_ENV/bin"
     export UV_ACTIVE=1  # or VENV_ACTIVE=1
+    export UV_PROJECT_ENVIRONMENT=$VIRTUAL_ENV
     export VIRTUAL_ENV
 }
 
