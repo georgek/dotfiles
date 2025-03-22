@@ -185,9 +185,13 @@ fi
 # npm install -g to home dir
 export NPM_CONFIG_PREFIX=$HOME/.local/
 
-# pipx
+# python
 if hash pipx 2>/dev/null; then
     eval "$(register-python-argcomplete pipx)"
+fi
+
+if hash uv 2>/dev/null; then
+    source <(uv generate-shell-completion bash)
 fi
 
 # kubernetes
