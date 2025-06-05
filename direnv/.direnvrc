@@ -80,7 +80,7 @@ layout_uv() {
 
     if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
         log_status "No virtual environment exists. Executing \`uv venv\` to create one."
-        uv venv $venv_path
+        uv venv --seed $venv_path
         VIRTUAL_ENV=$venv_path
     fi
 
