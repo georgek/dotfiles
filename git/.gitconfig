@@ -13,6 +13,10 @@
 	diff = auto
 	interactive = auto
 	status = auto
+
+[log]
+	date = iso-local
+
 [github]
 	user = georgek
 [push]
