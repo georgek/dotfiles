@@ -28,7 +28,7 @@ else
     git_prompt=''
 fi
 
-end='\$\[\e[00m\]'
+end='\n\[\e['$user_host_colour'm\]\$\[\e[00m\]'
 
 if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
