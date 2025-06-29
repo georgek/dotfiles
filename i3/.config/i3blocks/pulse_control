@@ -36,34 +36,84 @@ def get_sinks() -> tuple[list[Sink], int]:
     sink_dbs = []
     default_sink_index = 0
 
-    pacmd_output = run(["pacmd", "list-sinks"], stdout=PIPE)
+    # Get the default sink name first
+    default_sink_name = ""
+    default_output = run(["pactl", "get-default-sink"], stdout=PIPE, text=True)
+    if default_output.returncode == 0:
+        default_sink_name = default_output.stdout.strip()
 
-    if pacmd_output.returncode != 0:
+    # Get list of sinks
+    pactl_output = run(["pactl", "list", "sinks"], stdout=PIPE)
+    if pactl_output.returncode != 0:
         # try starting the daemon
         run(["pulseaudio", "--daemon"])
-        pacmd_output = run(["pacmd", "list-sinks"], stdout=PIPE)
+        pactl_output = run(["pactl", "list", "sinks"], stdout=PIPE)
 
-    i = 0
-    for line in pacmd_output.stdout.decode("utf8").splitlines():
-        if match := re.match(r"^  ( |\*) index: (\d+)$", line):
-            sink_ids.append(match.group(2))
-            if match.group(1) == "*":
-                default_sink_index = i
-            i += 1
+    current_id = None
+    current_sink_idx = -1
+    found_name = False
+
+    lines = pactl_output.stdout.decode("utf8").splitlines()
+    for i, line in enumerate(lines):
+        # Identify start of a sink section
+        if match := re.match(r"^Sink #(\d+)$", line):
+            current_id = match.group(1)
+            sink_ids.append(current_id)
+            current_sink_idx += 1
+            found_name = False
             continue
-        if match := re.match(r'\s+alsa.card_name = "([^"]+)"', line):
-            sink_names.append(match.group(1))
-            continue
-        vol_regex = (
-            r'\s+volume:\s+[\w-]+:\s+\d+\s+/\s+(\d+)%\s+/\s([-\d\.]+|-inf)\s+dB'
-        )
-        if match := re.match(vol_regex, line):
-            sink_volumes.append(int(match.group(1)))
-            sink_dbs.append(float(match.group(2)))
-            continue
-        if match := re.match(r'\s+muted:\s+(\w+)', line):
+
+        # Check if this is the default sink
+        if default_sink_name and "Name:" in line and default_sink_name in line:
+            default_sink_index = current_sink_idx
+
+        # Try to get shorter names in order of preference
+        if not found_name:
+            # First priority: alsa.card_name (what you had before)
+            if match := re.match(r'\s+alsa.card_name = "([^"]+)"', line):
+                sink_names.append(match.group(1))
+                found_name = True
+                continue
+
+            # Second priority: device.product.name (often shorter)
+            if match := re.match(r'\s+device.product.name = "([^"]+)"', line):
+                sink_names.append(match.group(1))
+                found_name = True
+                continue
+
+            # Third priority: alsa.name (usually concise)
+            if match := re.match(r'\s+alsa.name = "([^"]+)"', line):
+                sink_names.append(match.group(1))
+                found_name = True
+                continue
+
+            # Fallback: device.description but try to make it shorter by taking first part
+            if match := re.match(r'\s+device.description = "([^"]+)"', line):
+                # Take only first part if it contains spaces or hyphens
+                name_parts = match.group(1).split(' ', 1)
+                if len(name_parts) > 1:
+                    sink_names.append(name_parts[0])
+                else:
+                    sink_names.append(match.group(1))
+                found_name = True
+                continue
+
+        # Get volume information (taking front-left channel as reference)
+        if "Volume:" in line and "front-left:" in line:
+            if match := re.search(r'(\d+)%\s+/\s+([-\d\.]+|-inf)\s+dB', line):
+                sink_volumes.append(int(match.group(1)))
+                sink_dbs.append(float(match.group(2)) if match.group(2) != "-inf" else float("-inf"))
+                continue
+
+        # Get mute status
+        if match := re.match(r'\s+Mute:\s+(\w+)', line):
             sink_muted.append(True if match.group(1) == "yes" else False)
             continue
+
+    # Make sure we have all properties for each sink
+    # If we have missing names (which could happen if we didn't find any of our preferred name properties)
+    while len(sink_names) < len(sink_ids):
+        sink_names.append(f"Sink {sink_ids[len(sink_names)]}")
 
     sinks = [Sink(*props) for props in
              zip(sink_ids, sink_names, sink_volumes, sink_muted, sink_dbs)]
@@ -72,19 +122,24 @@ def get_sinks() -> tuple[list[Sink], int]:
 
 def change_sink(sinks: list[Sink], sink_index: int) -> None:
     """Set sink sink_index to default and move all inputs to sink sink_index.
-
     """
     sys.stderr.write(f"Changing to sink {sinks[sink_index]}...\n")
 
-    run(["pacmd", "set-default-sink", sinks[sink_index].id])
+    # Set default sink using pactl
+    run(["pactl", "set-default-sink", sinks[sink_index].id])
 
-    pacmd_output = run(["pacmd", "list-sink-inputs"], stdout=PIPE)
-    for line in pacmd_output.stdout.decode("utf8").splitlines():
-        match = re.match(r"^    index: (\d+)$", line)
-        if match:
-            input_id = match.group(1)
-            sys.stderr.write(f"Moving input {input_id}...\n")
-            run(["pacmd", "move-sink-input", input_id, sinks[sink_index].id])
+    # Get all sink inputs using pactl
+    pactl_output = run(["pactl", "list", "sink-inputs"], stdout=PIPE)
+
+    current_input_id = None
+
+    for line in pactl_output.stdout.decode("utf8").splitlines():
+        # Look for sink input sections
+        if match := re.match(r"^Sink Input #(\d+)$", line):
+            current_input_id = match.group(1)
+            sys.stderr.write(f"Moving input {current_input_id}...\n")
+            # Move this sink input to the selected sink
+            run(["pactl", "move-sink-input", current_input_id, sinks[sink_index].id])
 
 
 def mute_default_sink() -> None:
@@ -145,7 +200,7 @@ def main() -> None:
     name = sinks[default_sink_index].name
 
     if db == float("-inf"):
-        volume_str = f"  - dB"
+        volume_str = "  - dB"
     else:
         volume_str = f"{db:>+5.1f}dB"
 
