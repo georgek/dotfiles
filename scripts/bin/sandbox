@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+(exec bwrap --ro-bind /usr /usr \
+      --dir /tmp \
+      --dir /var \
+      --symlink ../tmp var/tmp \
+      --proc /proc \
+      --dev /dev \
+      --ro-bind /etc/resolv.conf /etc/resolv.conf \
+      --ro-bind /etc/ssl /etc/ssl \
+      --symlink usr/lib /lib \
+      --symlink usr/lib64 /lib64 \
+      --symlink usr/bin /bin \
+      --symlink usr/sbin /sbin \
+      --unshare-all \
+      --share-net \
+      --die-with-parent \
+      --new-session \
+      --dir /run/user/$(id -u) \
+      --setenv XDG_RUNTIME_DIR "/run/user/`id -u`" \
+      --setenv PS1 "sandbox \w $ " \
+      --file 11 /etc/passwd \
+      --file 12 /etc/group \
+      $@) \
+    11< <(getent passwd $UID 65534) \
+    12< <(getent group $(id -g) 65534)
