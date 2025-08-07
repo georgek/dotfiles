@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# install claude-code like:
+# npm install --prefix ~/claude/ -g @anthropic-ai/claude-code
+
 set -euo pipefail
 
 bwrap --ro-bind /usr /usr \
@@ -22,7 +25,7 @@ bwrap --ro-bind /usr /usr \
       --setenv PS1 "bwrap-demo$ " \
       --setenv HOME /claude \
       --setenv PATH /claude/bin:$PATH \
-      --bind /home/gpk/claude /claude \
+      --bind $HOME/claude /claude \
       --bind $(pwd) /work \
       --chdir /work \
       claude $@
