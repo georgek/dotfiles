@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+bwrap --ro-bind /usr /usr \
+      --dir /tmp \
+      --dir /var \
+      --symlink ../tmp var/tmp \
+      --proc /proc \
+      --dev /dev \
+      --ro-bind /etc /etc \
+      --symlink usr/lib /lib \
+      --symlink usr/lib64 /lib64 \
+      --symlink usr/bin /bin \
+      --symlink usr/sbin /sbin \
+      --unshare-all \
+      --share-net \
+      --die-with-parent \
+      --new-session \
+      --dir /run/user/$(id -u) \
+      --setenv XDG_RUNTIME_DIR "/run/user/`id -u`" \
+      --setenv PS1 "bwrap-demo$ " \
+      --setenv HOME /claude \
+      --setenv PATH /claude/bin:$PATH \
+      --bind /home/gpk/claude /claude \
+      --bind $(pwd) /work \
+      --chdir /work \
+      claude $@
