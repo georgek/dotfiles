@@ -32,6 +32,9 @@ input * {
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $term --class floating
 
+# open an emacs window
+bindsym $mod+m exec emacsc
+
 # kill focused window
 bindsym $mod+q kill
 
