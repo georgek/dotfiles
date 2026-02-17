@@ -34,6 +34,8 @@ bwrap --ro-bind /usr /usr \
       --ro-bind /etc/ssl /etc/ssl \
       --ro-bind-try /etc/ca-certificates /etc/ca-certificates \
       --bind $HOME/opencode/home $HOME \
+      --bind $HOME/.cache/uv $HOME/.cache/uv \
+      --ro-bind $HOME/.config/uv $HOME/.config/uv \
       --ro-bind $HOME/opencode $HOME/opencode \
       --ro-bind $HOME/.local $HOME/host/.local \
       --setenv HOME $HOME \
