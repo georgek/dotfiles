@@ -6,7 +6,9 @@
 set -euo pipefail
 
 mkdir -p $HOME/opencode/home
-echo "nameserver 9.9.9.9" > $HOME/opencode/resolv.conf
+if [ ! -f $HOME/opencode/resolv.conf ]; then
+    echo "nameserver 9.9.9.9" > $HOME/opencode/resolv.conf
+fi
 
 bwrap --ro-bind /usr /usr \
       --dir /tmp \
