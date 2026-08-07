@@ -42,6 +42,8 @@ bwrap --ro-bind /usr /usr \
       --ro-bind $HOME/.local $HOME/host/.local \
       --setenv HOME $HOME \
       --setenv PATH $HOME/opencode/bin:$HOME/host/.local/bin:$PATH \
+      --setenv UV_PROJECT_ENVIRONMENT /tmp/opencode/uv-venv \
+      --setenv UV_LINK_MODE copy \
       --bind $(pwd) /work \
       --chdir /work \
       opencode $@
