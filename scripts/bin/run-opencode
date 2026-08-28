@@ -33,6 +33,7 @@ bwrap --ro-bind /usr /usr \
       --ro-bind /etc/passwd /etc/passwd \
       --ro-bind /etc/group /etc/group \
       --ro-bind /etc/localtime /etc/localtime \
+      --ro-bind /etc/ld.so.cache /etc/ld.so.cache \
       --ro-bind /etc/ssl /etc/ssl \
       --ro-bind-try /etc/ca-certificates /etc/ca-certificates \
       --bind $HOME/opencode/home $HOME \
@@ -40,10 +41,14 @@ bwrap --ro-bind /usr /usr \
       --ro-bind $HOME/.config/uv $HOME/.config/uv \
       --ro-bind $HOME/opencode $HOME/opencode \
       --ro-bind $HOME/.local $HOME/host/.local \
+      --ro-bind $HOME/.cargo $HOME/host/.cargo \
+      --ro-bind $HOME/.rustup $HOME/host/.rustup \
       --setenv HOME $HOME \
-      --setenv PATH $HOME/opencode/bin:$HOME/host/.local/bin:$PATH \
+      --setenv PATH $HOME/opencode/bin:$HOME/host/.local/bin:$HOME/host/.cargo/bin:$PATH \
       --setenv UV_PROJECT_ENVIRONMENT /tmp/opencode/uv-venv \
       --setenv UV_LINK_MODE copy \
+      --setenv CARGO_HOME $HOME/.cargo \
+      --setenv RUSTUP_HOME $HOME/host/.rustup \
       --bind "$PWD" "$PWD" \
       --chdir "$PWD" \
       opencode "$@"
