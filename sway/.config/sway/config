@@ -201,6 +201,7 @@ bindsym $mod+y exec clipman pick --tool=wofi --max-items=30
 # other
 bindsym XF86Calculator exec speedcrunch
 bindsym XF86Homepage exec loginctl suspend
+bindsym $mod+Shift+s exec loginctl suspend
 
 ### appearance
 hide_edge_borders both
