@@ -10,6 +10,10 @@ if [ ! -f $HOME/opencode/resolv.conf ]; then
     echo "nameserver 9.9.9.9" > $HOME/opencode/resolv.conf
 fi
 
+mkdir -p $HOME/.cache/uv
+mkdir -p $HOME/.cargo
+mkdir -p $HOME/.rustup
+
 bwrap --ro-bind /usr /usr \
       --dir /tmp \
       --dir /var \
